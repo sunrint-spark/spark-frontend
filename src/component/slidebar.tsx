@@ -1,25 +1,27 @@
 import "../styles/slidebar.css"
 
 function Slidebar(){
-    // const listsi = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]; // map함수 시연용 리스트, 나중에 삭제 예정
-    // const Listitemsi = listsi.map((item) => {
-    //     return(
-    //         <>
-    //             <div>
-    //                 {item}
-    //             </div>
-    //         </>
-    //     );
-    // });
-
- return(
-     <div className="slidebar-container">
-        <div className="slidebar-top-content">
-            <div>
-                <h3>사용자</h3>
-                <p>5 members</p>
+    const list = [1,2,3,4]
+    const ListPrint = list.map((item:number)=>{//나중에 리스트 구현할 예정
+        return(
+            <div className="slidebar-end-content-list">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect x="2.5" y="2.5" width="15" height="15" rx="3" stroke="#F08080" stroke-width="1.5"
+                          stroke-linecap="round"/>
+                </svg>
+                <p>프로젝트{item} 이름</p>
             </div>
-            <svg style={{width:"20px", height:"20px"}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        )
+    })
+
+    return (
+        <div className="slidebar-container">
+            <div className="slidebar-top-content">
+                <div>
+                    <h3>사용자</h3>
+                    <p>5 members</p>
+                </div>
+                <svg style={{width:"20px", height:"20px"}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M12 6.66666L8.4714 10.1953C8.21106 10.4556 7.78895 10.4556 7.5286 10.1953L4 6.66666"
                       stroke="#686B6E" />
             </svg>
@@ -54,12 +56,23 @@ function Slidebar(){
              </div>
          </div>
          <div className="slidebar-end-content">
-            <div>프로젝트f</div>
+            <div>
+                <p>프로젝트</p>
+            </div>
+             <div className="slidebar-bottom-content-box2">
+                 {ListPrint}
+             </div>
              <div>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                     <path
+                         d="M10 6.66667V10M10 10V13.3333M10 10H13.3333M10 10H6.66667M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z"
+                         stroke="#363A3D" stroke-width="1.5" stroke-linecap="round"/>
+                 </svg>
+                 <p>최근에 작업한 프로젝트</p>
              </div>
          </div>
-     </div>
- )
+        </div>
+    )
 }
 
 export default Slidebar;
