@@ -54,7 +54,7 @@ function Slidebar(){
              </div>
          </div>
          <div className="slidebar-end-content">
-            <div>프로젝트</div>
+            <div>프로젝트f</div>
              <div>
              </div>
          </div>
