@@ -52,7 +52,9 @@
     height: 32px;
     border-radius: 50%;
     background-color: #F08080;
-
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 .header-right-content{
     display: flex;
