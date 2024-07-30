@@ -31,13 +31,16 @@
 
 .community-head > p:nth-child(1) {
     color: #f08080;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
+    margin-left: 40px;
+    margin-bottom: 5px;
 }
 
 .community-head > p:nth-child(2) {
     color: #9b9c9e;
-    font-size: 20px;
+    font-size: 12px;
+    margin-left: 50px;
 }
 
 .community-option {
@@ -51,8 +54,8 @@
 }
 
 .card {
-    width: calc((100% - 60px) / 3);
-    height: calc((100%) / 2.7);
+    width: 336px;
+    height: 235px;
     background-color: #000;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -93,11 +96,28 @@
     gap: 4px;
 }
 
+.card-right-footer > div > svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.card-right-footer > div > p {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 180%;
+    letter-spacing: 0.15px;
+}
+
 .card-left-footer {
-    width: 150px;
+    width: 100px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
-    height: 50px;
+    height: 30px;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -115,13 +135,14 @@
 }
 
 .card-left-footer > div {
-    height: 40px;
-    width: 40px;
+    height: 25px;
+    width: 25px;
     background-color: white;
     border-radius: 50%;
 }
 
 .card-left-footer > p {
+    font-size: 10px;
     color: #9b9c9e;
     font-weight: bold;
 }

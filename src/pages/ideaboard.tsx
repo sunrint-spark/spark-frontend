@@ -1,11 +1,18 @@
 import Header from "../component/header.tsx";
 import "../styles/ideaboard.css"
+import {useModal} from "../modal/ModalContext.tsx";
+
 function Ideaboard(){
+    const { isModalOpen1, closeModal1, isModalOpen2, closeModal2 } = useModal();
+
+    console.log('isModalOpen1:', isModalOpen1);
+    console.log('isModalOpen2:', isModalOpen2);
+
     return(
         <div className="ideaboard">
-            <Header/>
+            {Header()}
             <div className="ideaboard-footer">
-                <div style={{width:'100%', justifyContent:'center', display:'flex', alignItems:'center'}}>
+                <div style={{width: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
                     <div className="ideaboard-footer-container">
                         <div className="ideaboard-first-content">
                             <div>
@@ -103,6 +110,39 @@ function Ideaboard(){
                     </div>
                 </div>
             </div>
+            {isModalOpen1 && (
+                <div className="idea-modal">
+                    <div className="modal-content">
+                        <div className="idea-modal-first-content">
+                            <span className="close" onClick={closeModal1}>&times;</span>
+                            <h3>아이디어 보드 공유하기</h3>
+                            <p>보드를 다른 사용자와 함께 사용보세요!</p>
+                        </div>
+                        <div className="idea-modal-second-content">
+                        </div>
+                        <div className="idea-modal-third-content"></div>
+                        <div className="idea-modal-forth-content"></div>
+                        <div className="idea-modal-fifth-content"></div>
+                    </div>
+                </div>
+            )}
+            {/* 두 번째 모달 */}
+            {isModalOpen2 && (
+                <div className="profile-modal">
+                    <div className="profile-modal-content">
+                        <div className="profile-modal-first-content">
+                            <span className="close" onClick={closeModal2}>&times;</span>
+                            <h3>아이디어 보드 공유하기</h3>
+                            <p>보드를 다른 사용자와 함께 사용보세요!</p>
+                        </div>
+                        <div className="profile-modal-second-content">
+                        </div>
+                        <div className="profile-modal-third-content"></div>
+                        <div className="profile-modal-forth-content"></div>
+                        <div className="profile-modal-fifth-content"></div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 
