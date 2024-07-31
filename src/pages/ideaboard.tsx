@@ -114,7 +114,7 @@ function Ideaboard(){
                         <div className="idea-modal-first-content">
                             <span className="close" onClick={closeModal1}>&times;</span>
                             <h3>아이디어 보드 공유하기</h3>
-                            <p>보드를 다른 사용자와 함께 사용보세요!</p>
+                            <p>보드를 다른 사용자와 함께 사용보세요!!</p>
                         </div>
                         <div className="idea-modal-second-content">
                         </div>
