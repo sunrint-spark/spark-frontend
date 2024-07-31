@@ -61,7 +61,7 @@ function HomePage() {
                     </div>
                 </section>
                 <section className="option">
-                    {[...Array(9)].map((_, index) => (
+                    {[...Array(20)].map((_, index) => (
                         <div key={index} className="option-card"></div>
                     ))}
                 </section>
