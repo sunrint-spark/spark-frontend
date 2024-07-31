@@ -206,6 +206,10 @@
 /*.profile-modal-first-content>p{*/
 /*    color: #9b9c9e;*/
 /*}*/
+:root {
+    --scale-factor: 0.7;
+}
+
 .ideaboard {
     width: 100vw;
     height: 100vh;
@@ -213,8 +217,8 @@
 }
 
 .ideaboard-footer {
-    width: 49%; /* Reduced from 70% to 70% of its original size */
-    height: 119px; /* Reduced from 170px to 70% of its original size */
+    width: calc(70% * var(--scale-factor)); /* 70% of the original size */
+    height: calc(170px * var(--scale-factor)); /* 70% of the original size */
     border-radius: 20px;
     border: 1px solid #F08080;
     background: #0D0F10;
@@ -228,13 +232,13 @@
 }
 
 .ideaboard-footer-container {
-    width: 80%; /* Reduced from 90% to 70% of its original size */
-    height: 98px; /* Reduced from 140px to 70% of its original size */
+    width: calc(110% * var(--scale-factor)); /* 70% of the original size */
+    height: calc(140px * var(--scale-factor)); /* 70% of the original size */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    gap: 10px;
+    gap: calc(10px * var(--scale-factor));
 }
 
 .ideaboard-first-content {
@@ -242,16 +246,15 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    width: 35px; /* Reduced from 50px to 70% of its original size */
-    margin-right: 10px; /* Reduced from 40px to 70% of its original size */
+    width: calc(50px * var(--scale-factor)); /* 70% of the original size */
+    margin-right: calc(40px * var(--scale-factor)); /* 70% of the original size */
     align-items: center;
-    gap: 10px;
-   /* Reduced from 15px to 70% of its original size */
+    gap: calc(15px * var(--scale-factor)); /* 70% of the original size */
 }
 
 .ideaboard-first-content > div:nth-child(1) {
-    width: 35px; /* Reduced from 50px to 70% of its original size */
-    height: 35px; /* Reduced from 50px to 70% of its original size */
+    width: calc(50px * var(--scale-factor)); /* 70% of the original size */
+    height: calc(50px * var(--scale-factor)); /* 70% of the original size */
     border-radius: 12px;
     background: #F08080;
     display: flex;
@@ -260,48 +263,48 @@
 }
 
 .ideaboard-first-content > div:nth-child(2) {
-    width: 35px; /* Reduced from 50px to 70% of its original size */
-    height: 35px; /* Reduced from 50px to 70% of its original size */
+    width: calc(50px * var(--scale-factor)); /* 70% of the original size */
+    height: calc(50px * var(--scale-factor)); /* 70% of the original size */
     border-radius: 12px;
-    border: 2px solid #F08080;
+    border: calc(2px * var(--scale-factor)) solid #F08080; /* 70% of the original size */
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
 .ideaboard-second-content {
-    width: 210px; /* Reduced from 300px to 70% of its original size */
-    border-left: 0.7px solid #F08080; /* Reduced from 1px to 70% of its original size */
-    border-right: 0.7px solid #F08080; /* Reduced from 1px to 70% of its original size */
+    width: calc(300px * var(--scale-factor)); /* 70% of the original size */
+    border-left: calc(1px * var(--scale-factor)) solid #F08080; /* 70% of the original size */
+    border-right: calc(1px * var(--scale-factor)) solid #F08080; /* 70% of the original size */
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: end;
     height: 100%;
-    padding: 0 20px;
+    padding: 0 calc(20px * var(--scale-factor));
 }
 
-.ideaboard-third-content{
+.ideaboard-third-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 550px; /* Reduced from 550px to 70% of its original size */
+    width: 550px; /* 기존 비율 유지 */
     height: 100%;
     box-sizing: border-box;
 }
 
 .ideaboard-third-content > div > input {
-    width: 300px;
-    height: 33.6px; /* Reduced from 48px to 70% of its original size */
+    width: 100%; /* 기존 비율 유지 */
+    height: calc(48px * var(--scale-factor)); /* 높이 유지 */
     background: #1a1d21;
     border-radius: 8px;
-    border: 1px solid #F08080;
+    border: calc(1px * var(--scale-factor)) solid #F08080; /* 기존 비율 유지 */
 }
 
 .ideaboard-third-content > div:nth-child(1) {
-    width: 56.7%; /* Reduced from 81% to 70% of its original size */
-    border: 2.8px solid #432a2b; /* Reduced from 4px to 70% of its original size */
+    width: calc(100% * var(--scale-factor)); /* 85% of the original size */
+    border: calc(2.8px * var(--scale-factor)) solid #432a2b; /* 기존 비율 유지 */
     background: #432a2b;
     display: flex;
     justify-content: center;
@@ -314,27 +317,27 @@
     display: flex;
     flex-direction: row;
     justify-content: start;
-    width: 56%; /* Reduced from 80% to 70% of its original size */
-    margin-top: 14px; /* Reduced from 20px to 70% of its original size */
+    width: calc(100% * var(--scale-factor)); /* 85% of the original size */
+    margin-top: calc(14px * var(--scale-factor)); /* Reduced from 20px to 70% of its original size */
     color: #686B6E;
-    gap: 7px; /* Reduced from 10px to 70% of its original size */
+    gap: calc(7px * var(--scale-factor)); /* Reduced from 10px to 70% of its original size */
 }
 
 .ideaboard-forth-content {
-    padding-left: 10px ;
+    padding-left: calc(10px * var(--scale-factor));
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: end;
-    border-left: 0.7px solid #F08080; /* Reduced from 1px to 70% of its original size */
-    width: 245px; /* Reduced from 350px to 70% of its original size */
-    gap: 14px; /* Reduced from 20px to 70% of its original size */
+    border-left: calc(1px * var(--scale-factor)) solid #F08080; /* 70% of the original size */
+    width: calc(350px * var(--scale-factor)); /* 70% of the original size */
+    gap: calc(20px * var(--scale-factor)); /* 70% of the original size */
     box-sizing: border-box;
     height: 100%;
 }
 
 .ideaboard-forth-item1 {
-    width: 58.1px; /* 83px에서 70%로 줄인 크기 */
+    width: calc(83px * var(--scale-factor)); /* 70% of the original size */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -343,18 +346,17 @@
     color: #F08080;
     font-weight: bolder;
     border-radius: 12px;
-    font-size: 14px; /* 20px에서 70%로 줄인 크기 */
-    border: 1.4px solid #F08080; /* 2px에서 70%로 줄인 크기 */
+    font-size: calc(20px * var(--scale-factor)); /* 70% of the original size */
+    border: calc(2px * var(--scale-factor)) solid #F08080; /* 70% of the original size */
     background: #0D0F10;
-
 }
 
 .ideaboard-forth-item1 > svg {
-    margin-bottom: 14px; /* 20px에서 70%로 줄인 크기 */
+    margin-bottom: calc(20px * var(--scale-factor)); /* 70% of the original size */
 }
 
 .ideaboard-forth-item2 {
-    width: 58.1px; /* 83px에서 70%로 줄인 크기 */
+    width: calc(83px * var(--scale-factor)); /* 70% of the original size */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -363,18 +365,17 @@
     color: #F08080;
     font-weight: bolder;
     border-radius: 12px;
-    font-size: 14px; /* 20px에서 70%로 줄인 크기 */
-    border: 1.4px solid #F08080; /* 2px에서 70%로 줄인 크기 */
+    font-size: calc(20px * var(--scale-factor)); /* 70% of the original size */
+    border: calc(2px * var(--scale-factor)) solid #F08080; /* 70% of the original size */
     background: #0D0F10;
 }
 
 .ideaboard-forth-item2 > svg {
-    margin-bottom: 14px; /* 20px에서 70%로 줄인 크기 */
+    margin-bottom: calc(20px * var(--scale-factor)); /* 70% of the original size */
 }
 
-
 .ideaboard-forth-item3 {
-    width: 58.1px; /* Reduced from 83px to 70% of its original size */
+    width: calc(83px * var(--scale-factor)); /* 70% of the original size */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -383,13 +384,13 @@
     color: #F08080;
     font-weight: bolder;
     border-radius: 12px;
-    font-size: 14px; /* Reduced from 20px to 70% of its original size */
-    border: 1.4px solid #F08080; /* Reduced from 2px to 70% of its original size */
+    font-size: calc(20px * var(--scale-factor)); /* 70% of the original size */
+    border: calc(2px * var(--scale-factor)) solid #F08080; /* 70% of the original size */
     background: #0D0F10;
 }
 
 .ideaboard-forth-item3 > svg {
-    margin-bottom: 14px; /* Reduced from 20px to 70% of its original size */
+    margin-bottom: calc(20px * var(--scale-factor)); /* 70% of the original size */
 }
 
 .profile-modal {
@@ -412,34 +413,40 @@
     top: 0px;
     right: 40px;
     position: absolute;
-    padding: 40px 40px;
+    padding: calc(40px * var(--scale-factor));
     width: 800px;
-    height: 60%;
 }
 
-.close {
-    color: #aaa;
+.profile-modal-button {
+    height: calc(42px * var(--scale-factor)); /* 70% of the original size */
+    border: none;
+    padding: calc(0 16px * var(--scale-factor));
+    background: #F08080;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: calc(20px * var(--scale-factor)); /* 70% of the original size */
+}
+
+.profile-modal-input {
+    height: calc(42px * var(--scale-factor)); /* 70% of the original size */
+    width: 100%;
+    background: #282B2F;
+    border-radius: 8px;
+    padding: calc(0 16px * var(--scale-factor));
+    border: none;
+}
+
+.profile-modal-close {
+    color: #C3CAD3;
     float: right;
-    font-size: 28px;
+    font-size: calc(28px * var(--scale-factor));
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
+.profile-modal-close:hover,
+.profile-modal-close:focus {
+    color: #FFFFFF;
     text-decoration: none;
     cursor: pointer;
-}
-
-.profile-modal-first-content {
-    color: white;
-}
-
-.profile-modal-first-content > h3 {
-    margin-bottom: 16px;
-    font-size: 27px;
-}
-
-.profile-modal-first-content > p {
-    color: #9b9c9e;
 }

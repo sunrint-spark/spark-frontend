@@ -12,7 +12,6 @@ function Ideaboard(){
         <div className="ideaboard">
             {Header()}
             <div className="ideaboard-footer">
-                <div style={{width: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
                     <div className="ideaboard-footer-container">
                         <div className="ideaboard-first-content">
                             <div>
@@ -109,7 +108,6 @@ function Ideaboard(){
                         </div>
                     </div>
                 </div>
-            </div>
             {isModalOpen1 && (
                 <div className="idea-modal">
                     <div className="modal-content">
