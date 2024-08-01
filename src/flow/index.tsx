@@ -12,10 +12,20 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
+import {AIStartupNode} from "@/flow/nodes/AIStartupNode"
+
+
+const nodeTypes = {
+    aiStartupNode: AIStartupNode,
+};
+
 const initialNodes: Node[] = [
-    { id: '1', position: { x: 0, y: 0 }, data: {
-        label: "ㅗ"} },
-    { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
+    {
+        id: 'node-1',
+        type: 'aiStartupNode',
+        position: { x: 0, y: 0 },
+        data: { label: 'AI와 함께 브레인스토밍 시작하기' },
+    },
 ];
 
 const initialEdges: Edge[] = [{ id: 'e1-2', source: '1', target: '2' }];
@@ -36,6 +46,7 @@ export default function FlowApp() {
     return (
         <div style={{ width: '100vw', height: '100vh' }}>
             <ReactFlow
+                nodeTypes={nodeTypes}
                 nodes={nodes}
                 edges={edges}
                 onNodesChange={onNodesChange}
