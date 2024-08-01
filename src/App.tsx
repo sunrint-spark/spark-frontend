@@ -4,6 +4,7 @@ import Community from "./pages/community";
 import { ModalProvider } from './modal/ModalContext';
 import Ideaboard from "./pages/ideaboard";
 import Brainstorm from "./pages/Brainstorm";
+import './styles/global.css'
 
 export default function App() {
   return (

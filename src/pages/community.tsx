@@ -1,4 +1,4 @@
-import Slidebar from "../component/slidebar.tsx";
+import Slidebar from "@/components/slidebar.tsx";
 import "../styles/community.css";
 
 function Community() {

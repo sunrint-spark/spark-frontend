@@ -1,4 +1,4 @@
-import Header from "../component/header.tsx";
+import Header from "@/components/header.tsx";
 import "../styles/ideaboard.css"
 import {useModal} from "../modal/ModalContext.tsx";
 
