@@ -8,8 +8,8 @@ import {Button} from "@/components/ui/button.tsx"
 
 export function AIStartupNode() {
   return (
-      <>
-          <Handle type="source" position={Position.Right} />
+      <div style={{transform: 'scale(0.7)'}}>
+          <Handle type="source" position={Position.Right} style={{transform: 'scale(2.0)', transformOrigin: 'top left'}}  />
           <Card className="w-full max-w-md p-6 space-y-4">
               <div>
                   <div className="space-y-1">
@@ -26,6 +26,6 @@ export function AIStartupNode() {
                   </form>
               </div>
           </Card>
-      </>
+      </div>
   )
 }

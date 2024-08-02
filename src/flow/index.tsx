@@ -26,6 +26,7 @@ const initialNodes: Node[] = [
         position: { x: 0, y: 0 },
         data: { label: 'AI와 함께 브레인스토밍 시작하기' },
     },
+    { id: '1', data: { label: '-' }, position: { x: 100, y: 100 } },
 ];
 
 const initialEdges: Edge[] = [{ id: 'e1-2', source: '1', target: '2' }];
