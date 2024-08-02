@@ -1,0 +1,26 @@
+.itemNode {
+  display: flex;
+  padding: 0 16px;
+  align-items: center;
+}
+
+.selectItemNode {
+  display: flex;
+  padding: 0 16px;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #F08080;
+  background: #1A1D21;
+  box-shadow: 0 0 0 4px rgba(240, 128, 128, 0.24);
+}
+
+.ItemText {
+  color: #CDCECF;
+  text-align: center;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 200% */
+  letter-spacing: 0.15px;
+}
