@@ -1,14 +1,7 @@
-import {Handle, Position} from '@xyflow/react';
+import {ItemNodeProps} from "@/types/ItemNodeProps"
+import {Handle, Position} from '@xyflow/react'
 import style from "@/styles/flownode.module.scss"
 
-interface ItemNodeData {
-    selected: boolean;
-    label: string;
-}
-
-interface ItemNodeProps {
-    data: ItemNodeData;
-}
 
 export function ItemNode({data}: ItemNodeProps) {
     return (
