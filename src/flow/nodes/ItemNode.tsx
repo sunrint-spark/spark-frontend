@@ -4,6 +4,7 @@ import style from "@/styles/flownode.module.scss"
 
 
 export function ItemNode({data}: ItemNodeProps) {
+
     return (
         <>
             <Handle type="target" position={Position.Left}/>

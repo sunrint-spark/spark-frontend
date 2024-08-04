@@ -15,7 +15,7 @@ import '@xyflow/react/dist/style.css';
 import {AIStartupNode} from "@/flow/nodes/AIStartupNode"
 import {ItemNode} from "@/flow/nodes/ItemNode"
 import {MemoNode} from "@/flow/nodes/MemoNode"
-import {ContextMenuEdge}from "@/flow/edges/InteractiveEdge.tsx"
+import {MemoArrowEdge} from "@/flow/edges/StyledEdge.tsx"
 
 
 const nodeTypes = {
@@ -84,16 +84,18 @@ const initialEdges: Edge[] = [
         id: 'e1-2',
         source: 'node-23',
         target: 'node-42',
-        type: 'contextMenuEdge',
     }
 ];
 
 export default function FlowApp() {
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+    const [nodes, ,onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
     const onConnect = useCallback(
-        (params: Connection) => setEdges((eds) => addEdge(params, eds)),
+        (params: Connection) => setEdges((eds) => addEdge({...params, style: {
+            stroke: '#fff',
+            strokeWidth: 2,
+            }}, eds)),
         [setEdges]
     );
 
@@ -103,14 +105,14 @@ export default function FlowApp() {
 
     useEffect(() => {
         console.log("Edges changed:", JSON.stringify(edges, null, 2));
-    }, [edges]);
+    }, [edges])
 
     return (
         <div style={{ width: '100vw', height: '100vh' }}>
             <ReactFlow
                 colorMode="dark"
                 nodeTypes={nodeTypes}
-                edgeTypes={{contextMenuEdge: ContextMenuEdge}}
+                edgeTypes={{memoArrowEdge: MemoArrowEdge}}
                 nodes={nodes}
                 edges={edges}
                 onNodesChange={onNodesChange}

@@ -1,4 +1,4 @@
-import {MemoNodeProps} from "@/types/ItemNodeProps"
+import {MemoNodeProps} from "@/types/flownode"
 import {Handle, Position} from '@xyflow/react'
 import style from "@/styles/flownode.module.scss"
 
