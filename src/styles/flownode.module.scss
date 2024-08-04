@@ -47,6 +47,12 @@
   letter-spacing: 0.15px;
 }
 
+.resultNodeImageContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+}
+
 .resultDefaultNode {
   transform: scale(0.7);
   display: flex;
