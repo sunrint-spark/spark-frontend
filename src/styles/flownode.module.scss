@@ -47,6 +47,61 @@
   letter-spacing: 0.15px;
 }
 
+.resultDefaultNode {
+  transform: scale(0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 430px;
+  overflow-wrap: break-word;
+  gap: 10px;
+
+  h2 {
+    color: #FFF;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+  }
+
+  p {
+    color: #F08080;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
+}
+
+.resultDefaultNodeOption {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.resultDefaultNodeButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 2px solid #F08080;
+  background: #1A1D21;
+  box-shadow: 0 4px 4px 0 rgba(240, 128, 128, 0.25), 0 4px 4px 0 rgba(240, 128, 128, 0.25), 0 4px 4px 0 rgba(240, 128, 128, 0.25);
+  justify-content: flex-end;
+  flex-shrink: 0;
+
+  svg {
+    margin-right: 8px;
+  }
+}
+
 
 
 .ItemText {
