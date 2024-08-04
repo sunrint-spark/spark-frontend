@@ -15,7 +15,6 @@ import '@xyflow/react/dist/style.css';
 import {AIStartupNode} from "@/flow/nodes/AIStartupNode"
 import {ItemNode} from "@/flow/nodes/ItemNode"
 import {MemoNode} from "@/flow/nodes/MemoNode"
-import {MemoArrowEdge} from "@/flow/edges/StyledEdge.tsx"
 
 
 const nodeTypes = {
@@ -112,7 +111,6 @@ export default function FlowApp() {
             <ReactFlow
                 colorMode="dark"
                 nodeTypes={nodeTypes}
-                edgeTypes={{memoArrowEdge: MemoArrowEdge}}
                 nodes={nodes}
                 edges={edges}
                 onNodesChange={onNodesChange}
