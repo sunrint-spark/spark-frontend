@@ -113,18 +113,83 @@ function Ideaboard(){
                     </div>
                 </div>
             {isModalOpen1 && (
-                <div className="idea-modal">
+                <div className="idea-modal"  onClick={closeModal1}>
                     <div className="modal-content">
-                        <div className="idea-modal-first-content">
-                            <span className="close" onClick={closeModal1}>&times;</span>
-                            <h3>아이디어 보드 공유하기</h3>
-                            <p>보드를 다른 사용자와 함께 사용보세요!</p>
+                        <div className="modal-content-content">
+                            <div className="idea-modal-first-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none">
+                                    <path
+                                        d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20M4 19.5C4 20.163 4.26339 20.7989 4.73223 21.2678C5.20107 21.7366 5.83696 22 6.5 22H20V2H6.5C5.83696 2 5.20107 2.26339 4.73223 2.73223C4.26339 3.20107 4 3.83696 4 4.5V19.5Z"
+                                        stroke="#F08080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <div className="idea-modal-docs">
+                                    <p>아이디어 노트</p>
+                                    <p>아이디어 노트 관리하기</p>
+                                </div>
+                            </div>
+                            <div className="idea-modal-first-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none">
+                                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="#F08080" stroke-width="2"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <div className="idea-modal-docs">
+                                    <p>아이디어 노트</p>
+                                    <p>아이디어 노트 관리하기</p>
+                                </div>
+                            </div>
+                            <div className="idea-modal-first-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none">
+                                    <path
+                                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                        stroke="#F08080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 8L16 12L10 16V8Z" stroke="#F08080" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                                <div className="idea-modal-docs">
+                                    <p>아이디어 노트</p>
+                                    <p>아이디어 노트 관리하기</p>
+                                </div>
+                            </div>
+                            <div className="idea-modal-first-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none">
+                                    <path
+                                        d="M13 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V9M13 2L20 9M13 2V9H20"
+                                        stroke="#F08080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <div className="idea-modal-docs">
+                                    <p>아이디어 노트</p>
+                                    <p>아이디어 노트 관리하기</p>
+                                </div>
+                            </div>
+                            <div className="idea-modal-first-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none">
+                                    <path
+                                        d="M4.93 4.93L9.17 9.17M14.83 14.83L19.07 19.07M19.07 4.93L14.83 9.17L18.36 5.64M4.93 19.07L9.17 14.83M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                        stroke="#F08080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <div className="idea-modal-docs">
+                                    <p>아이디어 노트</p>
+                                    <p>아이디어 노트 관리하기</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="idea-modal-second-content">
+                        <div className="idea-modal-footer-content">
+                            <button>
+                                <p>새 아이디어 만들기</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                     fill="none">
+                                    <path
+                                        d="M4.16675 9.99996H15.8334M15.8334 9.99996L10.0001 4.16663M15.8334 9.99996L10.0001 15.8333"
+                                        stroke="#F08080" stroke-width="1.67" stroke-linecap="round"
+                                        stroke-linejoin="round"/>
+                                </svg>
+                            </button>
                         </div>
-                        <div className="idea-modal-third-content"></div>
-                        <div className="idea-modal-forth-content"></div>
-                        <div className="idea-modal-fifth-content"></div>
                     </div>
                 </div>
             )}
@@ -132,7 +197,7 @@ function Ideaboard(){
             {isModalOpen2 && (
                 <div className="profile-modal-background">
                     <div className="profile-modal">
-                        <div className="profile-modal-first-content">
+                    <div className="profile-modal-first-content">
                             <div>
                                 <h3>아이디어 보드 공유하기</h3>
                                 <span className="close" onClick={closeModal2}>

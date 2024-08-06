@@ -18,7 +18,7 @@ function Header() {
                                 <path d="M5 8L10 13L15 8" stroke="#F08080" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                     </div>
-                    <div>
+                    <div onClick={openModal1}>
                         <p>아이디어</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 21" fill="none">
                                 <path d="M5 8L10 13L15 8" stroke="#F08080" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
