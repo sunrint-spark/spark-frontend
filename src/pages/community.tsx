@@ -60,20 +60,13 @@ function Community() {
         );
     });
 
-    return (
-        <div className="community">
-            <Slidebar />
-            <div className="community-container">
-                <div className="community-head">
-                    <p>커뮤니티 보드</p>
-                    <p>홈  커뮤니티 보드</p>
-                </div>
-                <div className="community-option">
-                    {Listitems}
-                </div>
-            </div>
-        </div>
-    );
-}
+    return(
+        <>
+            <Slidebar/>
+            <div>
 
+            </div>
+        </>
+    )
+}
 export default Community;
