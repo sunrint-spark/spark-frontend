@@ -1,4 +1,4 @@
-import Slidebar from "../component/slidebar";
+import Slidebar from "@/components/slidebar";
 import "../styles/home.css";
 
 function HomePage() {

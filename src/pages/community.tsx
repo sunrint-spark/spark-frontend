@@ -1,4 +1,4 @@
-import Slidebar from "../component/slidebar.tsx";
+import Slidebar from "../components/slidebar.tsx";
 import "../styles/community.css";
 
 function Community() {
@@ -12,7 +12,7 @@ function Community() {
                 <div className="card-footer">
                     <div className="card-left-footer">
                         <div></div>
-                        <p>사용자 {item}</p>
+                        <p>사용자{item}</p>
                     </div>
                     <div className="card-right-footer">
                         <div>
@@ -60,13 +60,20 @@ function Community() {
         );
     });
 
-    return(
-        <>
-            <Slidebar/>
-            <div>
-
+    return (
+        <div className="community">
+            <Slidebar />
+            <div className="community-container">
+                <div className="community-head">
+                    <p>커뮤니티 보드</p>
+                    <p>홈 커뮤니티 보드</p>
+                </div>
+                <div className="community-option">
+                    {Listitems}
+                </div>
             </div>
-        </>
-    )
+        </div>
+    );
 }
+
 export default Community;

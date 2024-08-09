@@ -1,59 +1,81 @@
-.header{
+.header {
     width: 100vw;
-    height: 100px;
+    height: 80px;
     border-bottom: 2px solid #F08080;
     display: flex;
     justify-content: center;
+    padding: 19px 100px;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 1000; /* 헤더가 다른 콘텐츠 위에 표시되도록 설정 */
+    background-color: #1A1D21; /* 배경색 추가하여 다른 콘텐츠와 구분 */
 }
-.header-container{
-    width: 82%;
-    height: 62px;
+
+.header-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    width: 1238px;
     justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 }
-.header-left-content{
+
+.header-left-content {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+}
+
+.header-left-content > div {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
     color: #F08080;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-    font-weight: bolder;
 }
-.header-left-content>div>button{
-    border: none;
-    background: none;
-    margin-left: 10px;
+
+.header-left-content > div > p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
 }
-.header-left-content>div{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.header-profile{
+
+.header-profile {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     background-color: #F08080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-}
-.header-right-content>button{
-    border: none;
-    background: none;
-    color: #cdd1d4;
+.header-right-content {
     display: flex;
     align-items: center;
-    gap: 17px;
+    justify-content: center;
+    gap: 9px;
 }
-.header-right-content{
+
+.header-right-content > div {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
 }
-.header-right-content>button>p{
-    font-weight: bolder;
-    font-size: 16px;
+
+.header-right-content > div > p {
+    font-size: 14px;
+    color: #CDD1D4;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.header-right-content .header-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #F08080; /* 프로필 이미지에 테두리 추가 */
 }

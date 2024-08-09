@@ -1,9 +1,16 @@
-import Header from "../component/header.tsx";
+import Header from "@/components/header.tsx";
 import "../styles/ideaboard.css"
+import { ReactFlowProvider } from '@xyflow/react'
+import FlowApp from "../flow"
 function Ideaboard(){
     return(
         <div className="ideaboard">
             <Header/>
+            <div className="brainstorm">
+                <ReactFlowProvider>
+                    <FlowApp />
+                </ReactFlowProvider>
+            </div>
             <div className="ideaboard-footer">
                 <div style={{width:'100%', justifyContent:'center', display:'flex', alignItems:'center'}}>
                     <div className="ideaboard-footer-container">

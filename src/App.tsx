@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import HomePage from "./pages/Home"
-import Community from "./pages/community.tsx";
-import { ModalProvider } from './modal/ModalContext.tsx';
-import Ideaboard from "./pages/ideaboard.tsx";
+import Community from "./pages/community";
+import { ModalProvider } from './modal/ModalContext';
+import Ideaboard from "./pages/ideaboard";
+import Brainstorm from "./pages/Brainstorm";
+import './styles/global.css'
 
 export default function App() {
   return (
@@ -15,6 +17,7 @@ export default function App() {
                   <Ideaboard/>
               </ModalProvider>
           }/>
+          <Route path="/brainstorm" element={<Brainstorm/>}/>
       </Routes>
     </BrowserRouter>
   )
