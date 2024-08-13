@@ -107,6 +107,10 @@
     margin-bottom: 26px;
 }
 
+.example > div:nth-child(1) {
+    margin: 0px 15px    ;
+}
+
 .example > div:nth-child(1) > p{
     padding: 10px;
     color: #D9D9D9;
@@ -118,18 +122,17 @@
 }
 
 .example > div:nth-child(2) {
-    display: inline-flex;
-    width: 755px;
-    justify-content: center;
-    text-align: center;
+    display: flex;
+    width: 800px;
+    align-items: center;
+    margin: 5px 20px;
 }
 
 .example > div:nth-child(2) > div:nth-child(1), .example > div:nth-child(2) > div:nth-child(2), .example > div:nth-child(2) > div:nth-child(3) {
     justify-content: center; 
     display: flex;
-    width: 10%;
+    width: 230px;
     height: 35px;
-    padding: 9px 85px;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -164,7 +167,7 @@
 .alarm {
     display: flex;
     height: 77px;
-    padding: 14px 21px;
+    padding: 0px 21px;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
@@ -185,7 +188,6 @@
     display: flex;
     width: 51px;
     height: 24px;
-    padding: 0px 12px;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -196,12 +198,12 @@
 }
 
 .alarm > div > div:nth-child(1) > p {
+    display: flex;
     color: #1A1D21 !important;
     font-family: "Plus Jakarta Sans";
     font-size: 14px;
     font-style: normal;
-    font-weight: 700;
-    line-height: 24px; /* 171.429% */
+    line-height: 24px;
 }
 
 .alarm > div > div:nth-child(1) > p{
