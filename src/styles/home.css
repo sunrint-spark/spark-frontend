@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 .home {
@@ -16,7 +17,6 @@
     width: 783px;
     height: 100vh;
     flex-direction: column;
-    align-items: flex-start;
     margin-left: 176px;
     margin-top: 68px;
 }
@@ -35,34 +35,31 @@
     padding: 10px;
 }
 
-.descripe {
-    display: flex;
+.comment-form{
+    width: 100%;
     height: 191px;
-    padding: 12px 17px;
-    align-items: flex-start;
-    gap: 10px;
-    align-self: stretch;
     border-radius: 15px;
     border: 1px solid var(--, #F08080);
-    background: #1A1D21;
     box-shadow: 0px 4px 4px 0px #F08080;
-    margin-bottom: 26px;
-    justify-content: space-between;
-    flex-wrap: wrap; /* 추가 */
-    align-content: space-between; /* 활성화 */
+    box-sizing: border-box;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
 }
-
-
-.descripe > p{
-    color: #686B6E;
-    font-family: "Plus Jakarta Sans";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 24px;
+.comment-form > input {
+    width: 95%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: white;
+    padding-left: 10px; 
+    text-align: left;
+    margin-bottom: 130px;
 }
-
-.descripe > div {
+.comment-form>div>button{
     width: 52px;
     color: #1A1D21;
     text-align: center;
@@ -71,31 +68,16 @@
     font-style: normal;
     font-weight: 700;
     line-height: 24px;
-}
-
-.descripe > button {
-    display: flex;
-    height: 24px;
-    padding: 0px 12px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    align-self: stretch;
+    background-color: #F08080;
     border-radius: 5px;
-    border: 1px solid #F08080;
-    background:#F08080;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-right: 8px;
+}
+.comment-form>div{
+    width: 100%;
+    justify-content: end;
+    display: flex;
 }
 
-.descripe > button > p {
-    color: #1A1D21;
-    text-align: center;
-    font-family: "Plus Jakarta Sans";
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 24px;
-}
 
 .example {
     display: flex;
@@ -278,4 +260,23 @@
     border-radius: 10px;
     border: 1px solid #F08080;
     background: #131619;
+}
+
+.recent-content > div{
+    color: white;
+    border: 1px solid blue;
+    padding: 10px 20px;
+    
+}
+
+.recent-content > div > div:nth-child(1){
+    color: #F08080;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.recent-content > div > div:nth-child(2) {
+    color: #D9D9D9;
+    font-weight: 500;
+    font-size: 13px;
 }
