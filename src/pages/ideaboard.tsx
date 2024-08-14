@@ -158,7 +158,7 @@ function Ideaboard(){
                                 </svg>
                                 <div className="idea-modal-docs">
                                     <p>커뮤니티 탐색</p>
-                                    <p>공유되어 있는 아이디어 노트 탐색하기</p>
+                                    <p>공유되어 있는 아이디어 노트 탐색하기 </p>
                                 </div>
                             </div>
                             <div className="idea-modal-first-content">
