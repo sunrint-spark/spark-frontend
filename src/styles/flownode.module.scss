@@ -1,0 +1,133 @@
+.itemNode {
+  display: flex;
+  padding: 0 16px;
+  align-items: center;
+}
+
+.selectItemNode {
+  display: flex;
+  padding: 0 16px;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #F08080;
+  background: #1A1D21;
+  box-shadow: 0 0 0 4px rgba(240, 128, 128, 0.24);
+}
+
+.memoNode {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-wrap: break-word;
+  margin: 16px;
+  width: 145px;
+  height: 145px;
+  background: #f08080;
+  border: 1px #000000;
+  border-radius: 5px;
+}
+
+.memoText {
+  color: #000;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 18px */
+}
+
+.memoTextAuthor {
+  color: #4C4F51;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 250% */
+  letter-spacing: 0.15px;
+}
+
+.resultNodeImageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+
+  img {
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+    height: 112px;
+    display: block;
+  }
+}
+
+.resultDefaultNode {
+  transform: scale(0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 430px;
+  overflow-wrap: break-word;
+  gap: 10px;
+
+  h2 {
+    color: #FFF;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+  }
+
+  p {
+    color: #F08080;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
+}
+
+.resultDefaultNodeOption {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.resultDefaultNodeButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 2px solid #F08080;
+  background: #1A1D21;
+  box-shadow: 0 4px 4px 0 rgba(240, 128, 128, 0.25), 0 4px 4px 0 rgba(240, 128, 128, 0.25), 0 4px 4px 0 rgba(240, 128, 128, 0.25);
+  justify-content: flex-end;
+  flex-shrink: 0;
+
+  svg {
+    margin-right: 8px;
+  }
+}
+
+
+
+.ItemText {
+  color: #CDCECF;
+  text-align: center;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 200% */
+  letter-spacing: 0.15px;
+}
