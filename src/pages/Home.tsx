@@ -1,27 +1,8 @@
-import { useEffect } from "react";
 import Slidebar from "@/components/slidebar";
-import Api from "@/lib/api.ts";
 import "../styles/home.css";
-import AuthRequired from "@/pages/AuthRequired";
 
 function HomePage() {
-  if (localStorage.getItem('token') === null) {
-    return <AuthRequired />;
-  }
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    async function validateToken() {
-      try {
-        const token = localStorage.getItem('token') as string;
-        Api.setToken(token)
-        await Api.getProfile()
-      } catch (e) {
-        localStorage.removeItem('token');
-        return <AuthRequired />;
-      }
-    }
-    validateToken();
-  }, []);
 
   return (
     <div className="home">
