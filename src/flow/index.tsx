@@ -1,15 +1,10 @@
 import {useNavigate, useParams} from "react-router-dom";
 import Api from "@/lib/api";
 import {useRealtime} from "@/lib/realtime";
-import {useCallback, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {
     ReactFlow,
-    useNodesState,
-    useEdgesState,
-    addEdge,
-    Node,
     Edge,
-    Connection,
     Background,
     Controls,
 } from '@xyflow/react';
@@ -30,7 +25,19 @@ import {
 import {AxiosError} from "axios";
 
 import { useToast } from "@/components/ui/use-toast"
+import { useShallow } from 'zustand/react/shallow';
+import useRFStore from "@/context/store";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+const storeSelector = (state) => ({
+    nodes: state.nodes,
+    edges: state.edges,
+    onNodesChange: state.onNodesChange,
+    onEdgesChange: state.onEdgesChange,
+    setNodes: state.setNodes,
+    setEdges: state.setEdges,
+});
 
 const nodeTypes = {
     aiStartupNode: AIStartupNode,
@@ -40,46 +47,6 @@ const nodeTypes = {
     resultImageNode: ResultImageNode,
 };
 
-const initialNodes: Node[] = [
-    {
-        id: '1',
-        type: 'aiStartupNode',
-        position: { x: 250, y: 5 },
-        data: { text: 'AI와 함께 브레인스토밍 시작하기' },
-    },
-    {
-        id: '2',
-        type: 'itemNode',
-        position: { x: 250, y: 200 },
-        data: { text: '아이템 추가하기' },
-    },
-    {
-        id: '3',
-        type: 'memoNode',
-        position: { x: 250, y: 400 },
-        data: { text: '메모 추가하기' },
-    },
-    {
-        id: '4',
-        type: 'resultDefaultNode',
-        position: { x: 250, y: 600 },
-        data: { text: '결과 확인하기' },
-    },
-    {
-        id: '5',
-        type: 'resultImageNode',
-        position: { x: 250, y: 800 },
-        data: { text: '이미지 결과 확인하기' },
-    },
-    {
-        id: '6',
-        type: 'userCursorNode',
-        position: { x: 250, y: 1000 },
-        data: { message: 'User Cursor' },
-    },
-];
-
-const initialEdges: Edge[] = [];
 
 export default function FlowApp() {
     const navigate = useNavigate();
@@ -87,18 +54,11 @@ export default function FlowApp() {
     const { toast } = useToast();
 
     const [readyConnection, setReadyConnection] = useState(false)
-    const {newReceivedMessage, sendMessage, connect, closeConnection} = useRealtime(flowId as string);
+    const {newReceivedMessage, connect} = useRealtime(flowId as string);
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [dialogData, setDialogData] = useState({} as Record<string, string>)
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-
-    const onConnect = useCallback(
-        (params: Connection) => setEdges((eds) => addEdge({...params, style: {
-            stroke: '#fff',
-            strokeWidth: 2,
-            }}, eds)),
-        [setEdges]
+    const { nodes, edges, onNodesChange, onEdgesChange, onConnect, setNodes, setEdges } = useRFStore(
+        useShallow(storeSelector),
     );
 
     useEffect(
@@ -111,7 +71,7 @@ export default function FlowApp() {
                     ) as Record<string, unknown>
                     console.log(response.data)
                     const flowData = response.data as Record<string, unknown>
-                    // setNodes(flowData.nodes as Node[])
+                    setNodes(flowData.nodes as Node[])
                     setEdges(flowData.edges as Edge[])
                     setDialogData(
                         {
@@ -177,14 +137,6 @@ export default function FlowApp() {
             }
         }
     }, [newReceivedMessage]);
-
-    useEffect(() => {
-        console.log("Nodes changed:", JSON.stringify(nodes, null, 2));
-    }, [nodes]);
-
-    useEffect(() => {
-        console.log("Edges changed:", JSON.stringify(edges, null, 2));
-    }, [edges])
 
     return (
         <>
