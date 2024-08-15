@@ -1,6 +1,7 @@
+import React from 'react';
 import "../styles/header.css";
 import logoimage from "../image/dd.svg";
-import { useModal } from '../modal/ModalContext';
+import { useModal } from '../modal/ModalContext'; // 경로 조정 필요
 
 function Header() {
     const { openModal1, openModal2 } = useModal();
