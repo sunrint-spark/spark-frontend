@@ -1,0 +1,28 @@
+.user-cursor-node {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    pointer-events: none;
+}
+
+.user-cursor-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-cursor-message {
+    position: absolute;
+    pointer-events: none;
+}
+
+.user-cursor-bubble {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
