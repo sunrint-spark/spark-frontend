@@ -1,4 +1,4 @@
-.header {
+.header{
     width: 100vw;
     height: 80px;
     border-bottom: 2px solid #F08080;
@@ -6,76 +6,90 @@
     justify-content: center;
     padding: 19px 100px;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
     box-sizing: border-box;
-    z-index: 1000; /* 헤더가 다른 콘텐츠 위에 표시되도록 설정 */
-    background-color: #1A1D21; /* 배경색 추가하여 다른 콘텐츠와 구분 */
 }
-
-.header-container {
+.header-container{
     display: flex;
     width: 1238px;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
 }
-
-.header-left-content {
+.header-left-content{
     display: flex;
     align-items: center;
     gap: 38px;
 }
-
-.header-left-content > div {
+.header-left-content>div{
     display: flex;
     flex-direction: row;
     gap: 5px;
     color: #F08080;
 }
+.header-left-content>div>p:nth-child(1){
+    align-self: stretch;
 
-.header-left-content > div > p {
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
     line-height: 24px;
 }
-
-.header-profile {
+.header-left-content>div>p:nth-child(2){
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+}
+.header-left-content>div>p:nth-child(3){
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+}
+.header-profile{
     width: 32px;
     height: 32px;
     border-radius: 50%;
     background-color: #F08080;
-    display: flex;
     justify-content: center;
     align-items: center;
+    display: flex;
 }
-
-.header-right-content {
+.header-right-content{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
 }
-
-.header-right-content > div {
+.header-right-content>div:nth-child(1){
     display: flex;
+    height: 40px;
+    padding: 8px 16px;
+    justify-content: center;
     align-items: center;
     gap: 10px;
 }
-
-.header-right-content > div > p {
+.header-right-content>div:nth-child(1)>p{
     font-size: 14px;
-    color: #CDD1D4;
+    color: #cdd1d4;
     font-style: normal;
     font-weight: 600;
-    line-height: 20px;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.15px;
 }
-
-.header-right-content .header-profile {
+.header-right-content>div:nth-child(2){
     display: flex;
-    justify-content: center;
+    height: 41px;
     align-items: center;
-    border: 2px solid #F08080; /* 프로필 이미지에 테두리 추가 */
+    gap: 17px;
+}
+.header-right-content>div:nth-child(2)>p{
+    color: #CDD1D4;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: 0.15px;
 }
