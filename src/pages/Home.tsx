@@ -1,32 +1,92 @@
+import {useNavigate} from "react-router-dom";
+import {SetStateAction, useEffect, useState} from "react";
+import Api from "@/lib/api";
 import Slidebar from "@/components/slidebar";
 import "../styles/home.css";
 
 function HomePage() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const navigate = useNavigate()
+  const [recentFlowList, setRecentFlowList] = useState([] as Record<string, string>[])
+  const [recommendedFlowList, setRecommendedFlowList] = useState([] as string[])
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    setInputValue(event.target.value);
+  };
+
+
+  useEffect(() => {
+    async function getRecentFlowList() {
+      const response = await Api.getRecentFlow() as unknown as Record<string, Record<string, string>[]>
+      setRecentFlowList(response.data)
+    }
+    async function getRecommendedFlowList() {
+        const response = await Api.getRecommendFlow() as unknown as Record<string, string[]>
+        setRecommendedFlowList(response.data)
+    }
+    getRecentFlowList()
+    getRecommendedFlowList()
+  }, []);
+
+  const recentListPrint = recentFlowList.map((item: Record<string, string>) => {
+    return (<div key={item.id} onClick={
+      async () => {
+        navigate(`/brainstorm/${item.id}`)
+      }
+    } style={{
+        cursor: 'pointer'
+    }}>
+      <div>{item.name}</div>
+      <div>{item.description}</div>
+    </div>)
+  })
+  const recommendedListPrint = recommendedFlowList.map((item: string) => {
+    return (
+        <div
+            key={item}
+            style={{
+              cursor: 'pointer'
+            }}
+            onClick={
+              async () => {
+                const response = await Api.createFlow(item) as unknown as Record<string, string>
+                navigate(`/brainstorm/${response.data}`)
+              }
+            }
+        >{item}</div>
+    )
+  })
 
   return (
-    <div className="home">
-      <Slidebar/>
-      <div className="home-container">
-        <div className="MyIdea">
+      <div className="home">
+        <Slidebar/>
+        <div className="home-container">
+          <div className="MyIdea">
           <p>나의 아이디어 시작하기</p>
         </div>
-        <form className="comment-form">
+        <div className="comment-form">
                 <input
-                    placeholder="아이디어 주제나 찾고 싶은 아이템에 대해 설명해주세요 "
+                    type="text"
+                    value={inputValue}
+                    onChange={handleChange}
+                    placeholder="아이디어 주제나 만들 프로젝트에 대해서 1줄 아내로 설명해주세요 "
                 />
                 <div>
-                    <button type="submit">시작</button>
+                    <button onClick={
+                      async () => {
+                        const response = await Api.createFlow(inputValue) as unknown as Record<string, string>
+                        navigate(`/brainstorm/${response.data}`)
+                      }
+                    }>시작</button>
                 </div>
-            </form> 
+            </div>
         <div className="example">
           <div>
             <p>예시를 눌러 시작하세요!</p>
           </div>
           <div>
-            <div>예시1</div>
-            <div>예시2</div>
-            <div>예시3</div>
+            {recommendedListPrint}
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
                 <path d="M13 1.5005L1 13.5005M1 1.5005L13 13.5005" stroke="#F08080" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -40,11 +100,11 @@ function HomePage() {
         <div className="alarm">
           <div>
             <div>
-              <p>띠링!</p>
+              <p>알림</p>
             </div>
             <div>
-              <p>알림이 왔어요!</p>
-              <p>무슨 알림이 왔을까요? 전 집에 가고 싶어요</p>
+              <p>다른 유저와 함께 작업하기</p>
+              <p>아이디어 보드를 다른 유저와 실시간으로 작업할 수 있어요.</p>
             </div>
           </div>
         </div>
@@ -56,18 +116,7 @@ function HomePage() {
             <p>최근에 작업한 아이디어 보드</p>
             </div>
           <div className="recent-content">
-            <div>
-              <div>파워포인트 작성을 한번에</div>
-              <div>귀찮은 파워포인트 어쩌구</div>
-            </div>
-            <div>
-              <div>파워포인트 작성을 한번에</div>
-              <div>귀찮은 파워포인트 어쩌구</div>
-            </div>
-            <div>
-              <div>파워포인트 작성을 한번에</div>
-              <div>귀찮은 파워포인트 어쩌구</div>
-            </div>
+            {recentListPrint}
           </div>
         </div>
       </div>

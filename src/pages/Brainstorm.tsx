@@ -2,8 +2,7 @@ import "../styles/ideaboard.css"
 import { ReactFlowProvider } from '@xyflow/react'
 import FlowApp from "../flow"
 import {useModal} from "../modal/ModalContext.tsx";
-function Ideaboard(){
-
+function Brainstorm(){
     const { isModalOpen1, closeModal1, isModalOpen2, closeModal2 } = useModal();
 
     console.log('isModalOpen1:', isModalOpen1);
@@ -268,4 +267,4 @@ function Ideaboard(){
 
 }
 
-export default Ideaboard;
+export default Brainstorm;
