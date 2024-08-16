@@ -1,7 +1,7 @@
 import {useNavigate, useParams} from "react-router-dom";
 import Api from "@/lib/api";
 import {useRealtime} from "@/lib/realtime";
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import {
     ReactFlow,
     Edge,
@@ -180,4 +180,12 @@ export default function FlowApp() {
             </div>
         </>
     );
+}
+
+function useRealtimeRoom(roomId: string) {
+    const roomId = useMemo(() => {
+        return roomId
+    }, [roomId]);
+
+    return roomId;
 }
