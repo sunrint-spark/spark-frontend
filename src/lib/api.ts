@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 
 interface BodyUserAuth {
     state: string | null;
@@ -107,8 +107,7 @@ class SparkApiRequester {
         return response.data;
     }
 
-    async *streamAIBrainstorm(threadId: string, prompt: string): AsyncGenerator<Record<string, unknown>, void, unknown> {
-        let buffer = '';
+    async streamAIBrainstorm(threadId: string, prompt: string): Promise<Record<string, unknown>> {
         const config: AxiosRequestConfig = {
             headers: { Authorization: `Bearer ${this.token}` },
             params: {
@@ -117,38 +116,8 @@ class SparkApiRequester {
             }
         };
 
-        try {
-            const response = await this.axiosInstance.get(`/brainstorm`, config);
-            const stream = response.data;
-
-            for await (const chunk of stream) {
-                buffer += chunk.toString('utf-8');
-                let newlineIndex;
-                while ((newlineIndex = buffer.indexOf('\n')) !== -1) {
-                    const jsonLine = buffer.slice(0, newlineIndex);
-                    buffer = buffer.slice(newlineIndex + 1);
-                    try {
-                        const jsonData = JSON.parse(jsonLine);
-                        yield jsonData;
-                    } catch (parseError) {
-                        console.error('[stream] Failed to parse JSON:', parseError);
-                    }
-                }
-            }
-
-            // 마지막 버퍼 처리
-            if (buffer.trim()) {
-                try {
-                    const jsonData = JSON.parse(buffer);
-                    yield jsonData;
-                } catch (parseError) {
-                    console.error('[stream] Failed to parse JSON in remaining buffer:', parseError);
-                }
-            }
-        } catch (error) {
-            console.error('[stream] Error in /brainstorm:', error);
-            throw error;
-        }
+        const response = await this.axiosInstance.get(`/brainstorm`, config);
+        return response.data;
     }
 }
 
