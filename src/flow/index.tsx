@@ -1,10 +1,11 @@
 import {useNavigate, useParams} from "react-router-dom";
 import Api from "@/lib/api";
 import {useRealtime} from "@/lib/realtime";
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {
     ReactFlow,
     Edge,
+    Node,
     Background,
     Controls,
 } from '@xyflow/react';
@@ -25,8 +26,7 @@ import {
 import {AxiosError} from "axios";
 
 import { useToast } from "@/components/ui/use-toast"
-import { useShallow } from 'zustand/react/shallow';
-import useRFStore from "@/context/store";
+import useLBRealtimeStore from "@/context/store";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
@@ -53,13 +53,21 @@ export default function FlowApp() {
     const { flowId } = useParams();
     const { toast } = useToast();
 
+    const [readyRealtime, setReadyRealtime] = useState(false)
     const [readyConnection, setReadyConnection] = useState(false)
     const {newReceivedMessage, connect} = useRealtime(flowId as string);
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [dialogData, setDialogData] = useState({} as Record<string, string>)
-    const { nodes, edges, onNodesChange, onEdgesChange, onConnect, setNodes, setEdges } = useRFStore(
-        useShallow(storeSelector),
-    );
+    const {
+        liveblocks: { enterRoom, leaveRoom, isStorageLoading },
+        nodes,
+        edges,
+        setNodes,
+        setEdges,
+        onNodesChange,
+        onEdgesChange,
+        onConnect,
+    } = useLBRealtimeStore();
 
     useEffect(
         () => {
@@ -70,9 +78,9 @@ export default function FlowApp() {
                         flowId as string
                     ) as Record<string, unknown>
                     console.log(response.data)
-                    const flowData = response.data as Record<string, unknown>
-                    setNodes(flowData.nodes as Node[])
-                    setEdges(flowData.edges as Edge[])
+                    const {edges: defaultEdges, nodes: defaultNodes} = response.data as Record<string, unknown>
+                    setNodes(defaultNodes as Node[])
+                    setEdges(defaultEdges as Edge[])
                     setDialogData(
                         {
                             title: "데이터를 불러오는중...",
@@ -115,8 +123,12 @@ export default function FlowApp() {
 
     useEffect(() => {
         connect();
-        setIsDialogOpen(false);
     }, [readyConnection]);
+
+    useEffect(() => {
+        enterRoom(flowId as string);
+        return () => leaveRoom();
+    }, [enterRoom, leaveRoom, flowId]);
 
     useEffect(() => {
         if (newReceivedMessage) {
@@ -124,6 +136,8 @@ export default function FlowApp() {
                 toast({
                     title: "서버에 연결됨",
                 })
+                setReadyRealtime(true)
+                setIsDialogOpen(false)
             } else if (newReceivedMessage.op == 1) {
                 toast({
                     title: `${newReceivedMessage.data.name}님이 참가했습니다`,
@@ -137,6 +151,14 @@ export default function FlowApp() {
             }
         }
     }, [newReceivedMessage]);
+
+    if (isStorageLoading) {
+        return (
+            <div>
+                로딩중...
+            </div>
+        )
+    }
 
     return (
         <>
@@ -180,12 +202,4 @@ export default function FlowApp() {
             </div>
         </>
     );
-}
-
-function useRealtimeRoom(roomId: string) {
-    const roomId = useMemo(() => {
-        return roomId
-    }, [roomId]);
-
-    return roomId;
 }

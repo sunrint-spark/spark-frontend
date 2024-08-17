@@ -16,23 +16,23 @@ import { createClient } from "@liveblocks/client";
 import type { EnsureJson } from "@liveblocks/client";
 import { liveblocks } from "@liveblocks/zustand";
 import type { WithLiveblocks } from "@liveblocks/zustand";
+
 declare global {
     interface Liveblocks {
-        // The Storage tree for the room, for useMutation, useStorage, etc.
         Storage: Storage;
     }
 }
 
-
-// Create a Liveblocks client with your API key
 const client = createClient({
     publicApiKey: 'pk_dev_QVCEyHwYh2d0NEBIETvzHk8WKMToNWr0vmpe6kzwAC1Fwhr4ehSMLAnKROAgFUiv' as string,
-    throttle: 16, // Updates every 16ms === 60fps animation
+    throttle: 16,
 });
 
 type FlowState = {
     nodes: Node[] | [];
     edges: Edge[] | [];
+    setNodes: (nodes: Node[]) => void;
+    setEdges: (edges: Edge[]) => void;
     onNodesChange: OnNodesChange;
     onEdgesChange: OnEdgesChange;
     onConnect: OnConnect;
@@ -46,7 +46,7 @@ type Storage = EnsureJson<{
 const defaultNodes = [] as Node[];
 const defaultEdges = [] as Edge[];
 
-const useStore = create<WithLiveblocks<FlowState>>()(
+const useLBRealtimeStore = create<WithLiveblocks<FlowState>>()(
     liveblocks(
         (set, get) => ({
             nodes: defaultNodes,
@@ -67,11 +67,16 @@ const useStore = create<WithLiveblocks<FlowState>>()(
                     edges: addEdge(connection, get().edges),
                 });
             },
+            setNodes: (nodes: Node[]) => {
+                set({ nodes });
+            },
+            setEdges: (edges: Edge[]) => {
+                set({ edges });
+            },
         }),
         {
             client,
 
-            // Define the store properties that should be shared in real-time
             storageMapping: {
                 nodes: true,
                 edges: true,
@@ -81,4 +86,4 @@ const useStore = create<WithLiveblocks<FlowState>>()(
 );
 
 
-export default useStore;
+export default useLBRealtimeStore;
