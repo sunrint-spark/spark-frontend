@@ -79,7 +79,7 @@ class SparkApiRequester {
                 prompt: prompt,
             }
         };
-        const response = await this.axiosInstance.post('/flows/', null, config);
+        const response = await this.axiosInstance.post('/flows', null, config);
         return response.data;
     }
 
@@ -116,7 +116,7 @@ class SparkApiRequester {
             }
         };
 
-        const response = await this.axiosInstance.get(`/brainstorm`, config);
+        const response = await this.axiosInstance.get(`/brainstorm/stream`, config);
         return response.data;
     }
 }
