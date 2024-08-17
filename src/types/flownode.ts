@@ -13,6 +13,18 @@ export interface ItemNodeProps {
     id: string;
 }
 
+export interface ResultDefaultNodeData {
+    title: string;
+    description: string[];
+    options: string[];
+    optionsUrl: string[];
+}
+
+export interface ResultDefaultNodeProps {
+    data: ResultDefaultNodeData;
+    id: string;
+}
+
 export interface MemoNodeProps {
     data: MemoNodeData;
 }
