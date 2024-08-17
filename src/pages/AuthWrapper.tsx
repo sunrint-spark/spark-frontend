@@ -47,6 +47,9 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
         if (!token) {
             return false;
         }
+        if(localStorage.getItem('@devModeOptions') !== "noAuth") {
+            return true;
+        }
         Api.setToken(token)
         try {
             const response = await Api.getProfile() as Record<string, Record<string, string>>
