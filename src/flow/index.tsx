@@ -28,17 +28,6 @@ import {AxiosError} from "axios";
 import { useToast } from "@/components/ui/use-toast"
 import useLBRealtimeStore from "@/context/store";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-const storeSelector = (state) => ({
-    nodes: state.nodes,
-    edges: state.edges,
-    onNodesChange: state.onNodesChange,
-    onEdgesChange: state.onEdgesChange,
-    setNodes: state.setNodes,
-    setEdges: state.setEdges,
-});
-
 const nodeTypes = {
     aiStartupNode: AIStartupNode,
     itemNode: ItemNode,
