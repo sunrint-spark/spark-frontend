@@ -1,24 +1,26 @@
 .slidebar-container{
-    width: 300px;
+    width: 312px;
     height: 97vh;
+    box-sizing: border-box;
     background-color: #0d0f10;
     border-radius: 20px;
     align-items: center;
     display: flex;
     flex-direction: column;
+    z-index: 10;
 }
-.slidebar-top-content{
-    width: 80%;
+.slidebar-top-content {
+    width: 312px;
+    max-width: 100%;
+    height: auto;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
     border-bottom: 1px solid #131619;
     padding: 24px;
-    /*  */
-
-
+    box-sizing: border-box;
+    flex-shrink: 0;
 }
 .slidebar-top-content>div>h3{
     color: white;
