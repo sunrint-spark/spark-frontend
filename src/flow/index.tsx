@@ -115,6 +115,12 @@ export default function FlowApp() {
     }, [readyConnection]);
 
     useEffect(() => {
+        if (!isStorageLoading) {
+            setIsDialogOpen(false)
+        }
+    }, [isStorageLoading]);
+
+    useEffect(() => {
         enterRoom(flowId as string);
         return () => leaveRoom();
     }, [enterRoom, leaveRoom, flowId]);
@@ -140,14 +146,6 @@ export default function FlowApp() {
             }
         }
     }, [newReceivedMessage]);
-
-    if (isStorageLoading) {
-        return (
-            <div>
-                로딩중...
-            </div>
-        )
-    }
 
     return (
         <>
