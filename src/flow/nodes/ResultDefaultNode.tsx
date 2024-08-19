@@ -11,9 +11,9 @@ export function ResultDefaultNode({data}: ResultDefaultNodeProps) {
             <div className={style.resultDefaultNode}>
                 <h2>{data.title}</h2>
                 {
-                    data.description.map((content: string) => {
+                    data.description.map((content: string, index: number) => {
                         return (
-                            <p>{content}</p>
+                            <p key={`result-textcontent-${index}`}>{content}</p>
                         )
                     })
                 }
@@ -27,6 +27,7 @@ export function ResultDefaultNode({data}: ResultDefaultNodeProps) {
                                     onClick={() => {
                                         window.open(data.optionsUrl[index], "_blank");
                                     }}
+                                    key={`result-option-${index}`}
                                 >
                                     <CircleIcon/>
                                     <span>{option}</span>
