@@ -30,7 +30,7 @@ function HomePage() {
   }, []);
 
   const recentListPrint = recentFlowList.map((item: Record<string, string>) => {
-    return (<div key={item.id} onClick={
+    return (<div key={item.id} className = "recommendList" onClick={
       async () => {
         navigate(`/brainstorm/${item.id}`)
       }
@@ -87,7 +87,7 @@ function HomePage() {
           </div>
           <div>
             {recommendedListPrint}
-            <div>
+            <div className ="recommendListButton">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
                 <path d="M13 1.5005L1 13.5005M1 1.5005L13 13.5005" stroke="#F08080" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
