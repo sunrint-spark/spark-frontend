@@ -2,58 +2,58 @@ import Slidebar from "../component/slidebar";
 import "../styles/home.css";
 
 function HomePage() {
-    // // eslint-disable-next-line react-hooks/rules-of-hooks
-    // const navigate = useNavigate()
-    // const [recentFlowList, setRecentFlowList] = useState([] as Record<string, string>[])
-    // const [recommendedFlowList, setRecommendedFlowList] = useState([] as string[])
-    // const [inputValue, setInputValue] = useState('');
-    //
-    // const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-    //     setInputValue(event.target.value);
-    // };
-    //
-    //
-    // useEffect(() => {
-    //     async function getRecentFlowList() {
-    //         const response = await Api.getRecentFlow() as unknown as Record<string, Record<string, string>[]>
-    //         setRecentFlowList(response.data)
-    //     }
-    //     async function getRecommendedFlowList() {
-    //         const response = await Api.getRecommendFlow() as unknown as Record<string, string[]>
-    //         setRecommendedFlowList(response.data)
-    //     }
-    //     getRecentFlowList()
-    //     getRecommendedFlowList()
-    // }, []);
-    //
-    // const recentListPrint = recentFlowList.map((item: Record<string, string>) => {
-    //     return (<div key={item.id} onClick={
-    //         async () => {
-    //             navigate(`/brainstorm/${item.id}`)
-    //         }
-    //     } style={{
-    //         cursor: 'pointer'
-    //     }}>
-    //         <div>{item.name}</div>
-    //         <div>{item.description}</div>
-    //     </div>)
-    // })
-    // const recommendedListPrint = recommendedFlowList.map((item: string) => {
-    //     return (
-    //         <div
-    //             key={item}
-    //             style={{
-    //                 cursor: 'pointer'
-    //             }}
-    //             onClick={
-    //                 async () => {
-    //                     const response = await Api.createFlow(item) as unknown as Record<string, string>
-    //                     navigate(`/brainstorm/${response.data}`)
-    //                 }
-    //             }
-    //         >{item}</div>
-    //     )
-    // })
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const navigate = useNavigate()
+    const [recentFlowList, setRecentFlowList] = useState([] as Record<string, string>[])
+    const [recommendedFlowList, setRecommendedFlowList] = useState([] as string[])
+    const [inputValue, setInputValue] = useState('');
+
+    const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+        setInputValue(event.target.value);
+    };
+
+
+    useEffect(() => {
+        async function getRecentFlowList() {
+            const response = await Api.getRecentFlow() as unknown as Record<string, Record<string, string>[]>
+            setRecentFlowList(response.data)
+        }
+        async function getRecommendedFlowList() {
+            const response = await Api.getRecommendFlow() as unknown as Record<string, string[]>
+            setRecommendedFlowList(response.data)
+        }
+        getRecentFlowList()
+        getRecommendedFlowList()
+    }, []);
+
+    const recentListPrint = recentFlowList.map((item: Record<string, string>) => {
+        return (<div key={item.id} onClick={
+            async () => {
+                navigate(`/brainstorm/${item.id}`)
+            }
+        } style={{
+            cursor: 'pointer'
+        }}>
+            <div>{item.name}</div>
+            <div>{item.description}</div>
+        </div>)
+    })
+    const recommendedListPrint = recommendedFlowList.map((item: string) => {
+        return (
+            <div
+                key={item}
+                style={{
+                    cursor: 'pointer'
+                }}
+                onClick={
+                    async () => {
+                        const response = await Api.createFlow(item) as unknown as Record<string, string>
+                        navigate(`/brainstorm/${response.data}`)
+                    }
+                }
+            >{item}</div>
+        )
+    })
     return (
         <div className="home">
             <Slidebar/>
