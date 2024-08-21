@@ -12,6 +12,7 @@ import {
     OnEdgesChange,
     OnNodesChange,
 } from "@xyflow/react";
+import Api from "@/lib/api";
 import { createClient } from "@liveblocks/client";
 import type { EnsureJson } from "@liveblocks/client";
 import { liveblocks } from "@liveblocks/zustand";
@@ -24,8 +25,12 @@ declare global {
 }
 
 const client = createClient({
-    publicApiKey: 'pk_dev_QVCEyHwYh2d0NEBIETvzHk8WKMToNWr0vmpe6kzwAC1Fwhr4ehSMLAnKROAgFUiv' as string,
     throttle: 16,
+    authEndpoint: async (room?) => {
+        const response = await Api.joinRealtimeRoom(room as string) as unknown as Record<string, string>
+        const responseData = response.data as unknown as Record<string, string>
+        return {token: responseData.access_token};
+    }
 });
 
 type FlowState = {

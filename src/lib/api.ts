@@ -25,11 +25,9 @@ export const BASEURL = 'http://localhost:9000';
 class SparkApiRequester {
     private baseURL: string;
     private axiosInstance: AxiosInstance;
-    private token: string | null;
 
     constructor(baseURL: string) {
         this.baseURL = baseURL;
-        this.token = null;
         this.axiosInstance = axios.create({
             baseURL: this.baseURL,
         });
@@ -44,37 +42,37 @@ class SparkApiRequester {
         const response = await this.axiosInstance.post('/user/auth', data);
         return response.data;
     }
-
-    setToken(token: string) {
-        this.token = token;
-    }
     
     async logout(): Promise<AxiosResponse<never>> {
+        const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {
-            headers: { Authorization: `Bearer ${this.token}` },
+            headers: { Authorization: `Bearer ${token}` },
         };
         return this.axiosInstance.post('/user/logout', {}, config);
     }
     
     async getProfile(): Promise<Record<string, unknown>> {
+        const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {
-            headers: { Authorization: `Bearer ${this.token}` },
+            headers: { Authorization: `Bearer ${token}` },
         };
         const response = await this.axiosInstance.get('/user/profile', config);
         return response.data;
     }
     
     async getFlow(): Promise<Record<string, unknown>> {
+        const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {
-            headers: { Authorization: `Bearer ${this.token}` },
+            headers: { Authorization: `Bearer ${token}` },
         };
         const response = await this.axiosInstance.get('/flows/', config);
         return response.data;
     }
 
     async createFlow(prompt: string): Promise<Record<string, string>> {
+        const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {
-            headers: { Authorization: `Bearer ${this.token}` },
+            headers: { Authorization: `Bearer ${token}` },
             params: {
                 prompt: prompt,
             }
@@ -84,32 +82,36 @@ class SparkApiRequester {
     }
 
     async getRecommendFlow(): Promise<Record<string, string>> {
+        const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {
-            headers: { Authorization: `Bearer ${this.token}` },
+            headers: { Authorization: `Bearer ${token}` },
         };
         const response = await this.axiosInstance.get('/flows/recommend', config);
         return response.data;
     }
 
     async getRecentFlow(): Promise<Record<string, string>> {
+        const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {
-            headers: { Authorization: `Bearer ${this.token}` },
+            headers: { Authorization: `Bearer ${token}` },
         };
         const response = await this.axiosInstance.get('/flows/recent', config);
         return response.data;
     }
 
     async joinRealtimeRoom(flowId: string): Promise<Record<string, string>> {
+        const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {
-            headers: { Authorization: `Bearer ${this.token}` },
+            headers: { Authorization: `Bearer ${token}` },
         };
-        const response = await this.axiosInstance.post(`/realtime/join/${flowId}`, null, config);
+        const response = await this.axiosInstance.get(`/realtime/${flowId}/join`, config);
         return response.data;
     }
 
     async streamAIBrainstorm(threadId: string, prompt: string): Promise<Record<string, unknown>> {
+        const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {
-            headers: { Authorization: `Bearer ${this.token}` },
+            headers: { Authorization: `Bearer ${token}` },
             params: {
                 prompt: prompt,
                 thread_id: threadId,
