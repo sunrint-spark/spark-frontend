@@ -5,6 +5,7 @@ export interface ItemNodeData {
 }
 
 export interface MemoNodeData extends ItemNodeData {
+    text: string;
     authorName: string;
 }
 
@@ -26,5 +27,6 @@ export interface ResultDefaultNodeProps {
 }
 
 export interface MemoNodeProps {
+    id: string;
     data: MemoNodeData;
 }
