@@ -1,6 +1,5 @@
 import {useNavigate, useParams} from "react-router-dom";
 import Api from "@/lib/api";
-import {useRealtime} from "@/lib/realtime";
 import {useEffect, useState} from 'react';
 import {
     ReactFlow,
@@ -9,6 +8,7 @@ import {
     Background,
     Controls,
 } from '@xyflow/react';
+
 import '@xyflow/react/dist/style.css';
 import {AIStartupNode} from "@/flow/nodes/AIStartupNode"
 import {ItemNode} from "@/flow/nodes/ItemNode"
@@ -23,10 +23,12 @@ import {
     AlertDialogHeader,
     AlertDialogTitle
 } from "@/components/ui/alert-dialog.tsx";
+import Toolbar from "@/components/ToolBar";
 import {AxiosError} from "axios";
 
 import { useToast } from "@/components/ui/use-toast"
 import useLBRealtimeStore from "@/context/store";
+import ToolBar from "@/components/ToolBar.tsx";
 
 const nodeTypes = {
     aiStartupNode: AIStartupNode,
@@ -42,9 +44,9 @@ export default function FlowApp() {
     const { flowId } = useParams();
     const { toast } = useToast();
 
+    const [accessToken, setAccessToken] = useState("")
     const [readyRealtime, setReadyRealtime] = useState(false)
     const [readyConnection, setReadyConnection] = useState(false)
-    const {newReceivedMessage, connect} = useRealtime(flowId as string);
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [dialogData, setDialogData] = useState({} as Record<string, string>)
     const {
@@ -62,7 +64,6 @@ export default function FlowApp() {
         () => {
             async function loadData() {
                 try {
-                    Api.setToken(localStorage.getItem('token') as string)
                     const response = await Api.joinRealtimeRoom(
                         flowId as string
                     ) as Record<string, unknown>
@@ -111,10 +112,6 @@ export default function FlowApp() {
     )
 
     useEffect(() => {
-        connect();
-    }, [readyConnection]);
-
-    useEffect(() => {
         if (!isStorageLoading) {
             setIsDialogOpen(false)
         }
@@ -124,28 +121,6 @@ export default function FlowApp() {
         enterRoom(flowId as string);
         return () => leaveRoom();
     }, [enterRoom, leaveRoom, flowId]);
-
-    useEffect(() => {
-        if (newReceivedMessage) {
-            if (newReceivedMessage.op == 0) {
-                toast({
-                    title: "서버에 연결됨",
-                })
-                setReadyRealtime(true)
-                setIsDialogOpen(false)
-            } else if (newReceivedMessage.op == 1) {
-                toast({
-                    title: `${newReceivedMessage.data.name}님이 참가했습니다`,
-                    description: `@${newReceivedMessage.data.username}`,
-                })
-            } else if (newReceivedMessage.op == 2) {
-                toast({
-                    title: `${newReceivedMessage.data.name}님이 나갔습니다`,
-                    description: `@${newReceivedMessage.data.username}`,
-                })
-            }
-        }
-    }, [newReceivedMessage]);
 
     return (
         <>
@@ -186,6 +161,7 @@ export default function FlowApp() {
                     <Controls aria-label="flow-control"/>
                     <Background bgColor="#131619"/>
                 </ReactFlow>
+                <ToolBar/>
             </div>
         </>
     );

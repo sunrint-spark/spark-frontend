@@ -48,7 +48,6 @@ export default function AuthRequired() {
                 }
                 const token = data.token;
                 localStorage.setItem('token', token);
-                Api.setToken(token)
                 const response = await Api.getProfile() as Record<string, Record<string, string>>
                 localStorage.setItem('user', JSON.stringify(response.data))
                 return navigate('/');

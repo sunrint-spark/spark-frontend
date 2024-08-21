@@ -27,7 +27,6 @@ export function ItemNode({id, data}: ItemNodeProps) {
 
     const handleClick = async (command: string) => {
         data.selected = true
-        Api.setToken(localStorage.getItem('token') as string)
         const response = await Api.streamAIBrainstorm(
             data.sourceThreadId, command
         )
@@ -88,7 +87,17 @@ export function ItemNode({id, data}: ItemNodeProps) {
                     x: thisNode.position.x+300,
                 },
             }
-            setNodes([...nodes, newNode])
+            const updateNodeData = (
+                nodeId: string,
+            ): void => {
+                const updatedNodes = nodes.map((node) =>
+                    node.id === nodeId ? { ...node, data: {
+                            ...node.data, selected: true
+                        } } : node
+                );
+                setNodes([...nodes, newNode, ...updatedNodes]);
+            };
+            updateNodeData(id);
             const newEdge = {
                 id: generateRandomCode() as string,
                 source: id,
@@ -104,7 +113,7 @@ export function ItemNode({id, data}: ItemNodeProps) {
                 handleClick(data.label as string)
             }}>
                 <ContextMenuTrigger>
-                    <Handle type="target" position={Position.Left}/>
+                    <Handle type="target" position={Position.Left} id={generateRandomCode()}/>
                     {data.selected && <Handle type="source" position={Position.Right}/>}
                     <div className={data.selected ? style.selectItemNode : style.itemNode}>
                         <p className={style.ItemText}>

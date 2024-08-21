@@ -19,7 +19,6 @@ const AIStartupNode: React.FC = ({id, data }: NodeProps) => {
 
     const handleClick = async () => {
         data.isAllowEditing = false
-        Api.setToken(localStorage.getItem('token') as string)
         const response = await Api.streamAIBrainstorm(
             "new", data.text as string
         )
@@ -71,7 +70,12 @@ const AIStartupNode: React.FC = ({id, data }: NodeProps) => {
 
   return (
       <div style={{transform: 'scale(0.7)'}}>
-          <Handle type="source" position={Position.Right} style={{transform: 'scale(2.0)', transformOrigin: 'top left'}}  />
+          <Handle
+              type="source"
+              position={Position.Right}
+              style={{transform: 'scale(2.0)', transformOrigin: 'top left'}}
+              id={generateRandomCode()}
+          />
           <Card className="w-full max-w-md p-6 space-y-4">
               <div>
                   <div className="space-y-1">
