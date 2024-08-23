@@ -2,11 +2,27 @@ import {ResultDefaultNodeProps} from '@/types/flownode'
 import {Handle, Position} from '@xyflow/react'
 import style from "@/styles/flownode.module.scss"
 import {CircleIcon} from "@/components/ui/icon";
+import {
+    ContextMenu,
+    ContextMenuCheckboxItem,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuLabel,
+    ContextMenuRadioGroup,
+    ContextMenuRadioItem,
+    ContextMenuSeparator,
+    ContextMenuShortcut,
+    ContextMenuSub,
+    ContextMenuSubContent,
+    ContextMenuSubTrigger,
+    ContextMenuTrigger,
+} from "@/components/ui/context-menu"
 
 
 export function ResultDefaultNode({data}: ResultDefaultNodeProps) {
     return (
-        <>
+        <div>
+            <ContextMenu>
             <Handle type="target" position={Position.Left}/>
             <div className={style.resultDefaultNode}>
                 <h2>{data.title}</h2>
@@ -38,6 +54,7 @@ export function ResultDefaultNode({data}: ResultDefaultNodeProps) {
                     }
                 </div>
             </div>
-        </>
+            </ContextMenu>
+        </div>
     )
 }
