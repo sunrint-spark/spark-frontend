@@ -23,12 +23,12 @@ import {
     AlertDialogHeader,
     AlertDialogTitle
 } from "@/components/ui/alert-dialog.tsx";
-import Toolbar from "@/components/ToolBar";
 import {AxiosError} from "axios";
 
 import { useToast } from "@/components/ui/use-toast"
 import useLBRealtimeStore from "@/context/store";
 import ToolBar from "@/components/ToolBar.tsx";
+import { useSearchParams } from "react-router-dom";
 
 const nodeTypes = {
     aiStartupNode: AIStartupNode,
@@ -44,8 +44,6 @@ export default function FlowApp() {
     const { flowId } = useParams();
     const { toast } = useToast();
 
-    const [accessToken, setAccessToken] = useState("")
-    const [readyRealtime, setReadyRealtime] = useState(false)
     const [readyConnection, setReadyConnection] = useState(false)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [dialogData, setDialogData] = useState({} as Record<string, string>)
@@ -59,13 +57,15 @@ export default function FlowApp() {
         onEdgesChange,
         onConnect,
     } = useLBRealtimeStore();
+    const [searchParams] = useSearchParams();
 
     useEffect(
         () => {
             async function loadData() {
                 try {
+                    const isCommunity: boolean = searchParams.get('share') as unknown as boolean;
                     const response = await Api.joinRealtimeRoom(
-                        flowId as string
+                        flowId as string, isCommunity
                     ) as Record<string, unknown>
                     console.log(response.data)
                     const {edges: defaultEdges, nodes: defaultNodes} = response.data as Record<string, unknown>
@@ -74,7 +74,7 @@ export default function FlowApp() {
                     setDialogData(
                         {
                             title: "데이터를 불러오는중...",
-                            description: "[TIP]  / 키를 누르면 다른 사용자들과 실시간으로 채팅할 수 있습니다."
+                            description: "잠시만 기다려주세요"
                         }
                     )
                     setIsDialogOpen(true)
@@ -162,6 +162,8 @@ export default function FlowApp() {
                     <Background bgColor="#131619"/>
                 </ReactFlow>
                 <ToolBar/>
+                {/*{!isStorageLoading && <ExportTextModal/>}*/}
+                {/*<FlowShareModal/>*/}
             </div>
         </>
     );
