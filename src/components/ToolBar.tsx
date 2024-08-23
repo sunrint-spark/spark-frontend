@@ -2,7 +2,6 @@ import "../styles/ideaboard.css"
 import {useState} from "react";
 import useLBRealtimeStore from "@/context/store";
 import {
-    useReactFlow,
     useViewport
 } from "@xyflow/react";
 import {generateRandomCode} from "@/lib/tree";
@@ -15,7 +14,6 @@ export default function Toolbar () {
         nodes,
         setNodes,
     } = useLBRealtimeStore();
-    const { screenToFlowPosition } = useReactFlow();
     const { x: viewportX, y: viewportY, zoom} = useViewport();
     const { toast } = useToast()
     const [promptText, setPromptText] = useState<string>("");
@@ -66,6 +64,7 @@ export default function Toolbar () {
 
     return (
         <div className="ideaboard-footer">
+
         <div className="ideaboard-footer-container">
             <div className="ideaboard-first-content">
                 <div style={{
@@ -93,7 +92,11 @@ export default function Toolbar () {
                 </div>
                 <div style={{
                     cursor: 'pointer'
-                }} id="view-flow-info">
+                }} id="view-flow-info"
+                     onClick={() =>{
+                         alert("준비중인 메뉴입니다");
+                     }}
+                >
                     <FontAwesomeIcon icon={faShareNodes} />
                 </div>
             </div>
@@ -151,7 +154,11 @@ export default function Toolbar () {
                 </div>
             </div>
             <div className="ideaboard-forth-content">
-                <div className="ideaboard-forth-item1" id="텍스트 정리 해주는 api아이디">
+                <div className="ideaboard-forth-item1" id="텍스트 정리 해주는 api아이디" onClick={
+                    () => {
+                        alert("해당 기능은 준비중입니다.")
+                    }
+                }>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 17 20"
                          fill="none">
                         <path
@@ -182,9 +189,10 @@ export default function Toolbar () {
                             strokeLinejoin="round"/>
                     </svg>
                     <p>이미지</p>
-                    <p>복사</p>
+                    <p>저장</p>
                 </div>
             </div>
         </div>
-    </div>)
+    </div>
+    )
 }
