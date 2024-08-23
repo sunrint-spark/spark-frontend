@@ -28,6 +28,7 @@
 
 .MyIdea {
     margin-bottom: 26px;
+    margin-top: 100px;
 }
 
 .MyIdea > p{
@@ -60,7 +61,7 @@
     background: transparent;
     color: white;
     text-align: left;
-    margin-bottom: 110px;
+    margin-bottom: 90px;
     padding: 12px;
 }
 .comment-form>div>button{
@@ -92,6 +93,7 @@
     border-radius: 15px;
     background: #1A1D21;
     margin-bottom: 26px;
+    padding: 10px;
 }
 
 .example > div:nth-child(1) {
@@ -307,4 +309,11 @@
 }
 .recomendListButton{
     margin-left: 10px;
+}
+.asdf{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
 }
