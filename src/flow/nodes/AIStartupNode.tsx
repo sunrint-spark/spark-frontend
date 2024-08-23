@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {Handle, Position, Node, useNodes, NodeProps} from '@xyflow/react';
 
 import {Card} from "@/components/ui/card.tsx"
@@ -11,6 +11,7 @@ import Api from "@/lib/api";
 import {generateRandomCode} from "@/lib/tree";
 
 
+// @ts-ignore
 const AIStartupNode: React.FC = ({id, data }: NodeProps) => {
     // const { nodes, setNodes } = useRFStore();
     const [text, setText] = useState(data.text);

@@ -27,7 +27,7 @@ declare global {
 const client = createClient({
     throttle: 16,
     authEndpoint: async (room?) => {
-        const response = await Api.joinRealtimeRoom(room as string) as unknown as Record<string, string>
+        const response = await Api.joinRealtimeRoom(room as string, false) as unknown as Record<string, string>
         const responseData = response.data as unknown as Record<string, string>
         return {token: responseData.access_token};
     }

@@ -1,10 +1,8 @@
-import {ItemNodeProps} from '@/types/flownode'
-import {Handle, Position} from '@xyflow/react'
 import style from "@/styles/flownode.module.scss"
 import {CircleIcon} from "@/components/ui/icon";
 
 
-export function ResultImageNode({data}: ItemNodeProps) {
+export function ResultImageNode() {
     return (
         <>
             <div className={style.resultNodeImageContainer}>

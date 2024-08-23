@@ -12,7 +12,7 @@ import {Button} from "@/components/ui/button.tsx";
 import useLBRealtimeStore from "@/context/store";
 
 export default function ExportTextModal() {
-    const { nodes, setNodes, edges, setEdges } = useLBRealtimeStore();
+    const { nodes,  } = useLBRealtimeStore();
     const filteredUniqueNodes = nodes
         .filter(node => node.type === 'aiStartupNode')
         .filter((node, index, self) =>

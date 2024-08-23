@@ -1,11 +1,9 @@
-import {useNavigate} from "react-router-dom"
 import { useEffect, useState } from "react";
 import "../styles/slidebar.css"
 import Api from "@/lib/api.ts";
 
 
 const Slidebar: React.FC = () => {
-    const navigator = useNavigate()
     const [flowList, setFlowList] = useState([] as Record<string, string>[])
 
     useEffect(()=>{

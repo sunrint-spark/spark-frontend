@@ -1,8 +1,7 @@
 import {MemoNodeProps} from "@/types/flownode"
 import {useState} from "react";
-import {Handle, Position} from '@xyflow/react'
 import style from "@/styles/flownode.module.scss"
-import {Node, useNodes} from '@xyflow/react';
+import {Node} from '@xyflow/react';
 import useLBRealtimeStore from "@/context/store.ts";
 
 

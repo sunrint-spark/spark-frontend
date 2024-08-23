@@ -25,7 +25,6 @@ import {
 } from "@/components/ui/alert-dialog.tsx";
 import {AxiosError} from "axios";
 
-import { useToast } from "@/components/ui/use-toast"
 import useLBRealtimeStore from "@/context/store";
 import ToolBar from "@/components/ToolBar.tsx";
 import { useSearchParams } from "react-router-dom";
@@ -42,8 +41,6 @@ const nodeTypes = {
 export default function FlowApp() {
     const navigate = useNavigate();
     const { flowId } = useParams();
-    const { toast } = useToast();
-
     const [readyConnection, setReadyConnection] = useState(false)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [dialogData, setDialogData] = useState({} as Record<string, string>)
