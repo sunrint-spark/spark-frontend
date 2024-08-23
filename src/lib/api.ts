@@ -99,11 +99,14 @@ class SparkApiRequester {
         return response.data;
     }
 
-    async joinRealtimeRoom(flowId: string): Promise<Record<string, string>> {
+    async joinRealtimeRoom(flowId: string, isCommunity: boolean): Promise<Record<string, string>> {
         const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {
             headers: { Authorization: `Bearer ${token}` },
         };
+        if (isCommunity) {
+            config.params = {community: true}
+        }
         const response = await this.axiosInstance.get(`/realtime/${flowId}/join`, config);
         return response.data;
     }
