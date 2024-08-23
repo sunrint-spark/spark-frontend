@@ -19,7 +19,7 @@ interface BodyUserAuth {
 //     permission: ('read' | 'write')[];
 // }
 
-export const BASEURL = 'http://localhost:9000';
+export const BASEURL = 'https://spark-api.ychan.me'
 
 
 class SparkApiRequester {
