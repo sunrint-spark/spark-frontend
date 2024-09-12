@@ -111,6 +111,15 @@ class SparkApiRequester {
         return response.data;
     }
 
+    async publishPublic(flowId: string): Promise<Record<string, string>> {
+        const token = localStorage.getItem('token');
+        const config: AxiosRequestConfig = {
+            headers: { Authorization: `Bearer ${token}` },
+        };
+        const response = await this.axiosInstance.post(`/realtime/${flowId}/publish`, {}, config);
+        return response.data;
+    }
+
     async streamAIBrainstorm(threadId: string, prompt: string): Promise<Record<string, unknown>> {
         const token = localStorage.getItem('token');
         const config: AxiosRequestConfig = {

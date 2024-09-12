@@ -114,6 +114,7 @@ export default function Toolbar () {
     }
 
     async function createShortLink() {
+        await Api.publishPublic(window.location.href.replace("https://spark.ychan.me/brainstorm/", ""))
         await Api.shortUrl(window.location.href).then((response) => {
             setDialogData({
                 title: "공유 링크",
