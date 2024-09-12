@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Community from "./pages/community";
 import { ModalProvider } from './modal/ModalContext';
 import Brainstorm from "./pages/Brainstorm";
@@ -14,15 +15,24 @@ const clientId = '975166081717-5kv5d2vbfj9nubq6jbo9u4u34b8lc0ir.apps.googleuserc
 
 export default function App() {
   return (
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={
-            <GoogleOAuthProvider clientId={clientId}>
-                <AuthWrapper>
-                    <HomePage/>
-                </AuthWrapper>
-                </GoogleOAuthProvider>
+      <HelmetProvider>
+          <Helmet>
+              <title>Spark</title>
+              <meta property="og:title" content="Spark, AI 브레인스토밍 플렛폼" />
+              <meta property="og:site_name" content="Spark" />
+              <meta property="og:url" content="https://spark.ychan.me" />
+              <meta property="og:description" content="주제 한 줄로 아이디어 생성, 프로젝트 기획까지 Spark로." />
+              <meta property="og:type" content="website" />
+          </Helmet>
+          <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+              <BrowserRouter>
+                  <Routes>
+                      <Route path="/" element={
+                          <GoogleOAuthProvider clientId={clientId}>
+                              <AuthWrapper>
+                                  <HomePage/>
+                              </AuthWrapper>
+                          </GoogleOAuthProvider>
         }/>
         <Route path="/callback" element={
             <AuthRequired/>
@@ -43,5 +53,6 @@ export default function App() {
     </BrowserRouter>
           <Toaster/>
         </ThemeProvider>
+          </HelmetProvider>
   )
 }
