@@ -15,7 +15,7 @@ export default function Toolbar () {
         setNodes,
     } = useLBRealtimeStore();
     const { x: viewportX, y: viewportY, zoom} = useViewport();
-    const { toast } = useToast()
+    const { toast } = useToast();
     const [promptText, setPromptText] = useState<string>("");
 
     const getRandomOffset = () => {
@@ -169,7 +169,11 @@ export default function Toolbar () {
                     <p>텍스트</p>
                     <p>정리</p>
                 </div>
-                <div className="ideaboard-forth-item2" id="문서 정리 해주는 api아이디">
+                <div className="ideaboard-forth-item2" id="문서 정리 해주는 api아이디"
+                     onClick={() => {
+                         alert("노드에 마우스를 올리고 우클릭하여 사용해주세요.")
+                     }}
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 21 21"
                          fill="none">
                         <path

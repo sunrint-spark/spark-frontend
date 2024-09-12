@@ -47,7 +47,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
         if (!token) {
             return false;
         }
-        if(localStorage.getItem('@devModeOptions') !== "noAuth") {
+        if(localStorage.getItem('$DEV.NOAUTH') !== "1") {
             return true;
         }
         try {
