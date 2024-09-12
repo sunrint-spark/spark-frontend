@@ -28,6 +28,7 @@ export function ItemNode({id, data}: ItemNodeProps) {
                 description: "노션으로 내보내기 중입니다...",
             })
         }
+        toast({description: "AI로 내용 생성중..."})
         const response = await Api.streamAIBrainstorm(
             data.sourceThreadId, command
         )

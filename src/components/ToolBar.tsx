@@ -2,12 +2,30 @@ import "../styles/ideaboard.css"
 import {useState} from "react";
 import useLBRealtimeStore from "@/context/store";
 import {
-    useViewport
-} from "@xyflow/react";
+    useViewport,
+    useReactFlow,
+    getNodesBounds,
+    getViewportForBounds,
+} from '@xyflow/react';
 import {generateRandomCode} from "@/lib/tree";
 import {useToast} from "@/components/ui/use-toast";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShareNodes} from "@fortawesome/free-solid-svg-icons";
+import { toPng } from 'html-to-image';
+import { Button } from "@/components/ui/button"
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
+import { CopyIcon } from "@radix-ui/react-icons"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import Api from "@/lib/api";
 
 export default function Toolbar () {
     const {
@@ -15,12 +33,45 @@ export default function Toolbar () {
         setNodes,
     } = useLBRealtimeStore();
     const { x: viewportX, y: viewportY, zoom} = useViewport();
+    const { getNodes } = useReactFlow();
     const { toast } = useToast();
     const [promptText, setPromptText] = useState<string>("");
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [dialogData, setDialogData] = useState({} as Record<string, string>);
 
     const getRandomOffset = () => {
         return Math.floor(Math.random() * 21) - 10;
     };
+
+    function downloadImage(dataUrl: string) {
+        const a = document.createElement('a');
+
+        a.setAttribute('download', 'spark.png');
+        a.setAttribute('href', dataUrl);
+        a.click();
+    }
+
+    async function downloadImageFromCanvas() {
+        const nodes = getNodes();
+        const bounds = getNodesBounds(nodes);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        const viewport = getViewportForBounds(
+            bounds,
+            window.innerWidth,
+            window.innerHeight,
+            0.5, 2,
+        );
+        const canvas = await toPng(document.querySelector('.react-flow__viewport') as HTMLElement, {
+            backgroundColor: '#131619',
+            width: window.innerWidth,
+            height: window.innerHeight,
+            style: {
+                transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
+            },
+        });
+        downloadImage(canvas);
+    }
 
     async function createNewAIStartupNode(prompt: string) {
         console.log(`[New AIStartupNode (storage)] prompt: ${prompt}`);
@@ -62,10 +113,66 @@ export default function Toolbar () {
         setNodes([...nodes, newNode]);
     }
 
+    async function createShortLink() {
+        await Api.shortUrl(window.location.href).then((response) => {
+            setDialogData({
+                title: "공유 링크",
+                description: "아래 링크로 이 아이디어 보드에 실시간으로 참가하기",
+                url: response.data,
+                infoType: "copyLink",
+            })
+            setIsDialogOpen(true)
+        });
+    }
+
     return (
         <div className="ideaboard-footer">
 
         <div className="ideaboard-footer-container">
+            <Dialog open={isDialogOpen}>
+                <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                        <DialogTitle>{dialogData.title}</DialogTitle>
+                        <DialogDescription>
+                            {dialogData.description}
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="flex items-center space-x-2">
+                        {dialogData.infoType === "notionExportGuide" && (
+                            <img src="https://i.ibb.co/yXrwHzs/Spark-Guide-Notion-Export.gif" alt="노션 내보내기 가이드" width="400" />
+                        )}
+                        {dialogData.infoType === "copyLink" && (
+                            <>
+                                <div className="grid flex-1 gap-2">
+                                    <Label htmlFor="link" className="sr-only">
+                                        링크
+                                    </Label>
+                                    <Input
+                                        id="link"
+                                        defaultValue={dialogData.url}
+                                        readOnly
+                                    />
+                                </div>
+                                <Button type="submit" size="sm" className="px-3">
+                                    <span className="sr-only">복사</span>
+                                    <CopyIcon className="h-4 w-4"/>
+                                </Button>
+                            </>
+                        )}
+                    </div>
+                    <DialogFooter className="sm:justify-start">
+                        <DialogClose asChild>
+                            <Button type="button" variant="secondary" onClick={
+                                () => {
+                                    setIsDialogOpen(false)
+                                }
+                            }>
+                                닫기
+                            </Button>
+                        </DialogClose>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
             <div className="ideaboard-first-content">
                 <div style={{
                     cursor: 'pointer'
@@ -93,8 +200,8 @@ export default function Toolbar () {
                 <div style={{
                     cursor: 'pointer'
                 }} id="view-flow-info"
-                     onClick={() =>{
-                         alert("준비중인 메뉴입니다");
+                     onClick={async () =>{
+                         await createShortLink()
                      }}
                 >
                     <FontAwesomeIcon icon={faShareNodes} />
@@ -158,7 +265,9 @@ export default function Toolbar () {
                     () => {
                         alert("해당 기능은 준비중입니다.")
                     }
-                }>
+                } style={{
+                    cursor: 'pointer'
+                }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 17 20"
                          fill="none">
                         <path
@@ -171,7 +280,15 @@ export default function Toolbar () {
                 </div>
                 <div className="ideaboard-forth-item2" id="문서 정리 해주는 api아이디"
                      onClick={() => {
-                         alert("노드에 마우스를 올리고 우클릭하여 사용해주세요.")
+                         setDialogData({
+                             title: "노션 내보내기 가이드",
+                             description: "아이템을 우클릭하고 '노션 내보내기'를 선택해주세요.",
+                             infoType: "notionExportGuide",
+                         })
+                         setIsDialogOpen(true)
+                     }}
+                     style={{
+                         cursor: 'pointer'
                      }}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 21 21"
@@ -184,7 +301,13 @@ export default function Toolbar () {
                     <p>문서</p>
                     <p>정리</p>
                 </div>
-                <div className="ideaboard-forth-item3" id="이미지 목사 해주는 api아이디">
+                <div className="ideaboard-forth-item3" id="이미지 목사 해주는 api아이디" onClick={
+                    () => {
+                        downloadImageFromCanvas()
+                    }
+                } style={{
+                         cursor: 'pointer'
+                     }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 19 19"
                          fill="none">
                         <path

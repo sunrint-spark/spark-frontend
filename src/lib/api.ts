@@ -124,6 +124,21 @@ class SparkApiRequester {
         const response = await this.axiosInstance.get(`/brainstorm/stream`, config);
         return response.data;
     }
+
+    async shortUrl(url: string): Promise<Record<string, string>> {
+        if (url.includes('localhost')) {
+            url = url.replace('localhost', 'localhost.spark.ychan.me');
+        }
+        const token = localStorage.getItem('token');
+        const config: AxiosRequestConfig = {
+            headers: { Authorization: `Bearer ${token}` },
+            params: {
+                url: url,
+            }
+        };
+        const response = await this.axiosInstance.get(`/flows/shorturl`, config);
+        return response.data;
+    }
 }
 
 const Api = new SparkApiRequester(BASEURL);

@@ -9,6 +9,7 @@ import {Button} from "@/components/ui/button.tsx"
 import useLBRealtimeStore from "@/context/store";
 import Api from "@/lib/api";
 import {generateRandomCode} from "@/lib/tree";
+import { toast } from "sonner";
 
 
 // @ts-ignore
@@ -19,6 +20,7 @@ const AIStartupNode: React.FC = ({id, data }: NodeProps) => {
     const { nodes, setNodes, edges, setEdges } = useLBRealtimeStore();
 
     const handleClick = async () => {
+        toast("AI로 내용 생성중...")
         data.isAllowEditing = false
         const response = await Api.streamAIBrainstorm(
             "new", data.text as string

@@ -28,6 +28,7 @@ import {AxiosError} from "axios";
 import useLBRealtimeStore from "@/context/store";
 import ToolBar from "@/components/ToolBar.tsx";
 import { useSearchParams } from "react-router-dom";
+import { Toaster } from "@/components/ui/sonner"
 
 const nodeTypes = {
     aiStartupNode: AIStartupNode,
@@ -159,6 +160,7 @@ export default function FlowApp() {
                     <Background bgColor="#131619"/>
                 </ReactFlow>
                 <ToolBar/>
+                <Toaster />
                 {/*{!isStorageLoading && <ExportTextModal/>}*/}
                 {/*<FlowShareModal/>*/}
             </div>

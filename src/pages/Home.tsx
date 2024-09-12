@@ -2,6 +2,14 @@ import {useNavigate} from "react-router-dom";
 import {SetStateAction, useEffect, useState} from "react";
 import Api from "@/lib/api";
 import Slidebar from "@/components/slidebar";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogContent,
+    AlertDialogDescription, AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle
+} from "@/components/ui/alert-dialog.tsx";
 import "../styles/home.css";
 
 function HomePage() {
@@ -10,6 +18,8 @@ function HomePage() {
   const [recentFlowList, setRecentFlowList] = useState([] as Record<string, string>[])
   const [recommendedFlowList, setRecommendedFlowList] = useState([] as string[])
   const [inputValue, setInputValue] = useState('');
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [dialogData, setDialogData] = useState({} as Record<string, string>)
 
   const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setInputValue(event.target.value);
@@ -50,6 +60,13 @@ function HomePage() {
             }}
             onClick={
               async () => {
+                  setDialogData(
+                      {
+                          title: "프로젝트를 생성중입니다...",
+                          description: "잠시만 기다려주세요"
+                      }
+                  )
+                  setIsDialogOpen(true)
                 const response = await Api.createFlow(item) as unknown as Record<string, string>
                 navigate(`/brainstorm/${response.data}`)
               }
@@ -60,6 +77,30 @@ function HomePage() {
 
   return (
       <div className="home">
+          <AlertDialog open={isDialogOpen}>
+              <AlertDialogContent>
+                  <AlertDialogHeader>
+                      <AlertDialogTitle>
+                          {dialogData.title}
+                      </AlertDialogTitle>
+                      <AlertDialogDescription style={{
+                          color: "white"
+                      }}>
+                          {dialogData.description}
+                      </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  {dialogData.error == "true" && (
+                      <AlertDialogFooter>
+                          <AlertDialogAction onClick={
+                              async () => {
+                                  setIsDialogOpen(false)
+                                  return navigate('/')
+                              }
+                          }>확인</AlertDialogAction>
+                      </AlertDialogFooter>
+                  )}
+              </AlertDialogContent>
+          </AlertDialog>
         <Slidebar/>
         <div className="home-container">
           <div className="MyIdea">
@@ -75,6 +116,13 @@ function HomePage() {
                 <div>
                     <button onClick={
                       async () => {
+                          setDialogData(
+                              {
+                                  title: "프로젝트를 생성중입니다...",
+                                  description: "잠시만 기다려주세요"
+                              }
+                          )
+                          setIsDialogOpen(true)
                         const response = await Api.createFlow(inputValue) as unknown as Record<string, string>
                         navigate(`/brainstorm/${response.data}`)
                       }
