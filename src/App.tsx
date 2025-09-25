@@ -20,7 +20,7 @@ export default function App() {
               <title>Spark</title>
               <meta property="og:title" content="Spark, AI 브레인스토밍 플렛폼" />
               <meta property="og:site_name" content="Spark" />
-              <meta property="og:url" content="https://spark.ychan.me" />
+              <meta property="og:url" content="https://spark.xiba.site" />
               <meta property="og:description" content="주제 한 줄로 아이디어 생성, 프로젝트 기획까지 Spark로." />
               <meta property="og:type" content="website" />
           </Helmet>
