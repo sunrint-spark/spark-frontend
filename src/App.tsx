@@ -11,7 +11,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { AuthWrapper } from "@/pages/AuthWrapper"
 
-const clientId = '975166081717-5kv5d2vbfj9nubq6jbo9u4u34b8lc0ir.apps.googleusercontent.com';
+const clientId = '942319178167-8n60jja1tavp2ltua48493ba86ng5diq.apps.googleusercontent.com';
 
 export default function App() {
   return (
